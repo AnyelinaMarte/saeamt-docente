@@ -1,8 +1,12 @@
 import "../styles/Form.css";
+import "../styles/Index.css";
+import "../styles/Estudiantes.css";
+import "../styles/Contenido.css";
+import "../styles/Configuracion.css"
 import { auth } from "../BD/Configuracion"
 import { useState } from "react";
 import Login_docente from './Formularios/Login_Docente';
-
+import Nav from "./Componentes/nav";
 function MyApp({ Component, pageProps }) {
   const [nombreUsuario, setnombreUsuario] = useState(null);
   return (
@@ -15,8 +19,12 @@ function MyApp({ Component, pageProps }) {
 
       })}
       {nombreUsuario ? (
+        <>
+        <Nav>
         <Component {...pageProps} />
-
+        </Nav>
+        
+        </>
       ) : (
         <Login_docente />
 

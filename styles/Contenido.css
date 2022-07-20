@@ -1,0 +1,58 @@
+.section-contenido {
+    position: absolute;
+    top: 13%;
+    left: 17.6%;
+    padding: 10px;
+    margin: 2px;
+    width: 82.2%;
+}
+.section-contenido h1{
+    text-align: left;
+    padding-bottom: 25px;
+    padding-left: 20px;
+}
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    
+}
+.grid button{
+    font-size: 1.5em;
+    background: #3498db;
+    color: #fff;
+    border: 0.25rem solid #3498db;
+    padding: 0.85em 0.75em;
+    margin: 1rem;
+    position: relative;
+    z-index: 1;
+    overflow: hidden;
+}
+.grid button:hover {
+    color: #3498db;
+    background-color: #fff;
+    cursor: pointer;
+  }
+.small{
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    
+}
+.h1{
+    position: absolute;
+    top: 0%;
+    left: 3%;
+}
+.columnas{
+    display: grid;
+    grid-template-columns: 1fr ;
+}
+.columnas input,textarea{
+    
+    width: 48%;
+    height: 2.5cm;
+    padding: 1%;
+    margin: 1%;
+   
+
+}

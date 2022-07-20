@@ -1,0 +1,13 @@
+.section-configuracion form{
+    position: absolute;
+    top: 13%;
+    left: 17.6%;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 30px;
+    margin: 2px;
+    width: 82.2%;
+   
+    
+}

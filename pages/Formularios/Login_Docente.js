@@ -9,36 +9,28 @@ export default function Login_docente() {
         e.preventDefault()
         const nombreDocente = document.getElementById('nombre_Docente').value;
         const apellidoDocente = document.getElementById('apellido_Docente').value;
-        const cedulaDocente = document.getElementById('cedula_Docente').value;
+        const idEscuela = document.getElementById('idescuela_Docente').value;
         const telefonoDocente = document.getElementById('telefono_Docente').value;
         const centroEduDocente = document.getElementById('centroEdu_Docente').value;
         const correoDocente = document.getElementById('correo_Docente').value;
         const claveDocente = document.getElementById('clave_Docente').value;
 
 
-        try {
+        
             createUserWithEmailAndPassword(auth, correoDocente, claveDocente).then(async usuario => {
-                await onAuthStateChanged(auth, (user) => {
-                    if (user) {
-                        const uid = user.uid
-                        setDoc(doc(db, uid, "DatosPersonales"), {
+               
+                        
+                        setDoc(doc(db, idEscuela, "Usuarios","Docentes",correoDocente,"BD-Docente","DatosPersonales"), {
                             nombre: nombreDocente,
                             apellido: apellidoDocente,
-                            cedula: cedulaDocente,
+                            idEscuela: idEscuela,
                             telefono: telefonoDocente,
                             centro_educativo: centroEduDocente,
                             correo: correoDocente,
                             clave: claveDocente
                         })
-                    } else {
-                        console.log("Hubo un problema")
-                    }
-                })
-            })
-        } catch {
-            console.log("nada")
-        }
-
+                        
+                    } )
     }
 
     // hasta aqui
@@ -84,7 +76,7 @@ export default function Login_docente() {
                         <form className="formLogin">
                             <label className="formlabel"> Nombre:<input className="forminput" type="text" name="nombre" id="nombre_Docente" /></label>
                             <label className="formlabel"> Apellido: <input className="forminput" type="text" name="apellido" id="apellido_Docente" /> </label>
-                            <label className="formlabel"> Cedula: <input className="forminput" type="text" name="cedula" size="10" maxLength="11" id="cedula_Docente" /></label>
+                            <label className="formlabel"> Id Escuela: <input className="forminput" type="text" name="idescuela" size="5" maxLength="5" id="idescuela_Docente" /></label>
                             <label className="formlabel"> Telefono:  <input className="forminput" type="text" name="telefono" size="10" maxLength="10" id="telefono_Docente" /></label>
                             <label className="formlabel"> Centro Educativo:
                                 <select className="formselect" name="centro_educativo" id="centroEdu_Docente">

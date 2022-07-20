@@ -1,0 +1,86 @@
+.section-estudiantes form{
+    position: absolute;
+    top: 13%;
+    left: 17.6%;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+    padding: 30px;
+    margin: 2px;
+    width: 82.2%;
+   
+    
+}
+
+
+.section-estudiantes h3{
+    text-align: center;
+    padding-bottom: 2%;
+}
+.section-estudiantes label{
+    padding: 5px;
+}
+.section-estudiantes input, option{
+    margin: 5px;
+    padding: 2px;
+    appearance: none;
+    width: 21%;
+    
+}
+.section-estudiantes select{
+    margin: 7px;
+    padding: 4px;
+    appearance: none;
+    width: 24%;
+}
+.section-estudiantes button{
+    margin: 2% 0% 1% 45%;
+    cursor: pointer;
+  width: 3cm;
+  height: 1.2cm;
+  padding: .375rem .75rem;
+  border-radius: 100px;
+  font-weight: bolder;
+  border: none;
+  background-color: #2697FF;
+}
+.section-estudiantes button:hover{
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+    background-color: #065cad;
+}
+.section-estudiantes .input-name{ 
+    width: 25%;
+}
+.section-estudiantes .input-fechan{ 
+    width: 15.5%;
+}
+.section-estudiantes .input-user{
+    width: 21.5%;
+}
+.section-estudiantes .input-clave{
+    width: 25%;
+}
+
+.table-estudiantes table{
+    position: absolute;
+    top: 59%;
+    left: 17.6%;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    padding: 30px;
+    margin: 2px;
+    width: 82.2%;
+    
+    
+}
+.table-estudiantes h3{
+    text-align: center;
+    padding-bottom: 2%;
+    position: absolute;
+    top: 58%;
+    left:50%;
+}
+
+.table-estudiantes td{
+    text-align: center;
+}
