@@ -1,9 +1,10 @@
 import Link from "next/link";
 import { db } from "../../../BD/Configuracion";
-import { collection, doc, getDoc, onSnapshot, query, } from "firebase/firestore";
+import { collection,setDoc, doc, updateDoc,getDoc, onSnapshot, query, } from "firebase/firestore";
 import { useEffect, useState } from 'react';
 import {useRouter} from 'next/router';
 import {actualizar_unidad} from '../../../BD/CRUD'
+import { async } from "@firebase/util";
 export default function indexUnidad(){
    
  const router = useRouter()
@@ -62,6 +63,32 @@ const handleSubmit2 = (e) => {
     }
 
 }
+const agregarObjetivos = async(e) =>{
+    e.preventDefault();
+    const objetivoEstraido = dataO;
+    const AgregarObjetivos = document.getElementById("objetivo").value
+    const referencia = doc(db, "11111", "Niveles","Nivel_1", router.query.id);
+    objetivoEstraido.push({Objetivos:AgregarObjetivos})
+   await updateDoc(referencia, {
+       Objetivos:objetivoEstraido
+    })
+ }
+ const borrarObjetivos = async(objetivo)=>{
+    const arrayDatos = dataO;
+    const indice = dataO.findIndex((elemento, indice) => {
+            if (elemento.Objetivos === objetivo) {
+                return indice + 1;
+            }
+        });
+        arrayDatos.splice(indice,1)
+        console.log(arrayDatos);
+        const referencia = doc(db, "11111", "Niveles","Nivel_1", router.query.id);
+        await updateDoc(referencia, {
+            Objetivos:arrayDatos
+            })
+
+ }
+
 var num = 0
     return(
        <>
@@ -97,9 +124,9 @@ var num = 0
               <div>
               <form>
               <label>Descripcion</label>
-              <input/>
+                <input id="objetivo" />
+                <button onClick={agregarObjetivos}>add</button>
               </form>
-              <button>add</button>
               </div>
               <table>
               <tr>
@@ -109,9 +136,7 @@ var num = 0
               <th>
               Objetivos
               </th>
-              <th>
-              Editar
-              </th>
+          
               <th>
               Eliminar
               </th>
@@ -123,13 +148,11 @@ var num = 0
                 {  num +=1}
                 </td>
                 <td>
-                  {n}
+                  {n.Objetivos}
                 </td>
+                
                 <td>
-                 <button>Editar</button>
-                </td>
-                <td>
-                  <button>Eliminar</button>
+                  <button onClick={()=>borrarObjetivos(n.Objetivos)} >Eliminar</button>
                 </td>
                 </tr>
               
