@@ -60,6 +60,14 @@ export default function Nav(props){
           </Link>
           </li>
           <li>
+          <Link href="#">
+            <a href="#">
+              <i className='bx bx-pie-chart-alt-2' ></i>
+              <span className="links_name">ACTIVIDADES</span>
+            </a>
+          </Link>
+          </li>
+          <li>
             
             <a >
               <i className='bx bx-coin-stack' ></i>
@@ -89,14 +97,14 @@ export default function Nav(props){
       <nav>
         <div className="sidebar-button">
           <i className='bx bx-menu sidebarBtn'></i>
-          <span className="dashboard">Matematicas</span>
+          <span className="dashboard">Matemáticas</span>
         </div>
         <div className="search-box">
           <input type="text" placeholder="Search..." />
           <i className='bx bx-search' ></i>
         </div>
         <div className="profile-details">
-        <img src="user.png" />
+        <img src="/user.png" />
           <span className="admin_name">{userData}</span>
           <i className='bx bx-chevron-down' ></i>
         </div>

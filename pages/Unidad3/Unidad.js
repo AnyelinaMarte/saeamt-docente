@@ -9,7 +9,7 @@ export default function Unidad() {
 
 
     useEffect(() => {
-        onSnapshot(query(collection(db, "11111", "Niveles", "Nivel_1"), orderBy("position", "asc")), (querySnapshot) => {
+        onSnapshot(query(collection(db, "11111", "Niveles", "Nivel_3"), orderBy("position", "asc")), (querySnapshot) => {
             const docs = []
             const prueba = []
             querySnapshot.forEach((doc) => {
@@ -21,18 +21,18 @@ export default function Unidad() {
         })
 
     }, [])
-
+ 
     return (
 
         <div className="section-contenido">
             <Link href="/Contenido"><button className="btn-back">
         <img className="img-back" src="/back.png" />
         </button></Link>
-            <h1 className="h1-position">Unidad 1</h1>
+            <h1 className="h1-position">Unidad 3</h1>
 
             <div className="grid">
                 {dataU.map(u =>
-                    <><Link href={"/Unidad1/" + u.id}>
+                    <><Link href={"/Unidad3/" + u.id}>
                         <button >
                             <small className="small">{u.position}</small>
                             {u.ID}

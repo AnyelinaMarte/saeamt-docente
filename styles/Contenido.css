@@ -5,18 +5,22 @@
     padding: 10px;
     margin: 2px;
     width: 82.2%;
+    background-color:rgba(245, 222, 179, 0.171);
 }
-.section-contenido h1{
+
+.section-contenido h1 {
     text-align: left;
     padding-bottom: 25px;
     padding-left: 20px;
 }
-.grid{
+
+.grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    
+
 }
-.grid button{
+
+.grid button {
     font-size: 1.5em;
     background: #3498db;
     color: #fff;
@@ -27,32 +31,189 @@
     z-index: 1;
     overflow: hidden;
 }
+
 .grid button:hover {
     color: #3498db;
     background-color: #fff;
     cursor: pointer;
-  }
-.small{
+}
+
+.small {
     position: absolute;
     top: 0%;
     left: 0%;
-    
+
 }
-.h1{
+
+.h1 {
     position: absolute;
     top: 0%;
     left: 3%;
 }
-.columnas{
+
+.columnas {
     display: grid;
-    grid-template-columns: 1fr ;
+    grid-template-columns: 1fr;
 }
-.columnas input,textarea{
+
+
+.columnas
+textarea {
+
+    width: 48%;
+    height: 3cm;
+    padding: 1%;
+    margin: 1%;
+    text-align: justify;
+    resize: none;
+    border-color: grey;
+    background-color: transparent;
     
+
+}
+.columnas 
+input{
     width: 48%;
     height: 2.5cm;
     padding: 1%;
     margin: 1%;
-   
 
 }
+
+.btn-video {
+   
+    background-color:transparent;
+    margin: 3px;
+    padding: 2px;
+    border-radius: 10%;
+    border: 1px grey;
+    width: 25px;
+}
+
+.btn-video:hover {
+    cursor: pointer;
+    box-shadow: 0px 0.5px 0px 0.5px grey ;
+    border-radius: 50%;
+    
+
+    
+}
+.img-back{
+  
+    width: 27px;
+    height: 27px;
+    
+    border-radius: 100%;
+}
+.btn-add{ 
+    border: none;
+    border-radius: 100%;
+    width: 20px;
+    height: 25px;
+ 
+
+}
+.btn-add:hover{
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.274), 0 8px 15px 0 rgba(0, 0, 0, 0.19);
+}
+.btn-delete{
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    width: 15px;
+    height: 15px;
+    margin: 2px;
+}
+.btn-back{ 
+    margin: 2px;
+    border: none;
+    border-radius: 100%;
+    width: 20px;
+    height: 20px;
+}
+.btn-back:hover{
+    cursor: pointer;
+    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.274), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.h1-position{
+    position: absolute;
+    top: 10px;
+    left: 30px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-large;
+}
+.h1-text{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: xx-large; 
+}
+.hr-d{
+    height: 5px;
+    background-color: rgba(85, 82, 82, 0.575);
+    margin-bottom: 20px;
+}
+.frm-letras{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:x-large; 
+}
+.label-frm{
+    margin-left: 12px;
+}
+#label{
+    font-family: Arial, Helvetica, sans-serif;
+    font-size:medium;  
+}
+.btn{
+ 
+  background-color: transparent;
+  border: 1px solid #3c86e7;
+  border-radius: 0.6em;
+  color: #070101;
+  cursor: pointer;
+  font-size: medium;
+  margin: 4px;
+  padding: 4px;
+  text-decoration: none;
+  text-align: center;
+  text-transform:capitalize;
+  width: 25%;
+  margin-left: 38%;
+  margin-bottom: 20px;
+  
+}
+
+.btn:hover {
+    box-shadow: 0 0 40px 40px #3c86e7 inset;
+    
+  }
+.hr-de{
+    margin-bottom: 20px;
+  }
+#textarea-video{
+    height: 45px;
+}
+#Video{
+    height: 45px;
+}
+#label{
+    margin-left: 15px;
+}
+#objetivo{
+    height: 25px;
+}
+.grid-tres{
+    display: grid;
+  grid-template-rows: 50px 50px;
+  grid-template-columns: 1fr 1fr 1fr ;
+
+}
+.table-o{
+    width: 100%;
+    text-align: center;
+    padding: 15px;
+}
+.table-o th {background-color:grey; }
+
+.table-o tr:nth-child(odd) {background-color: rgba(128, 128, 128, 0.5);}
+
+.table-o tr:nth-child(even) {background-color: rgba(128, 128, 128, 0.5);}

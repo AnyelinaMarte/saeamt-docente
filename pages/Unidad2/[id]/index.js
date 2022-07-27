@@ -31,7 +31,7 @@ export default function indexUnidad() {
     };
 
     useEffect(() => {
-        onSnapshot(query(doc(db, "11111", "Niveles", "Nivel_1", router.query.id)), (querySnapshot) => {
+        onSnapshot(query(doc(db, "11111", "Niveles", "Nivel_2", router.query.id)), (querySnapshot) => {
 
             setdataU(querySnapshot.data())
             setdataO(querySnapshot.data().Objetivos)
@@ -44,7 +44,7 @@ export default function indexUnidad() {
     const handleSubmit1 = (e) => {
         e.preventDefault()
         if (data1.Definicion != '') {
-            actualizar_unidad("11111", "Nivel_1", router.query.id, data1);
+            actualizar_unidad("11111", "Nivel_2", router.query.id, data1);
             setData1(datos_Inicial)
 
         } else {
@@ -55,7 +55,7 @@ export default function indexUnidad() {
     const handleSubmit2 = (e) => {
         e.preventDefault()
         if (data2.Video != '') {
-            actualizar_unidad("11111", "Nivel_1", router.query.id, data2);
+            actualizar_unidad("11111", "Nivel_2", router.query.id, data2);
             setData2(dato_Inicial)
 
         } else {
@@ -67,7 +67,7 @@ export default function indexUnidad() {
         e.preventDefault();
         const objetivoEstraido = dataO;
         const AgregarObjetivos = document.getElementById("objetivo").value
-        const referencia = doc(db, "11111", "Niveles", "Nivel_1", router.query.id);
+        const referencia = doc(db, "11111", "Niveles", "Nivel_2", router.query.id);
         objetivoEstraido.push({ Objetivos: AgregarObjetivos })
         await updateDoc(referencia, {
             Objetivos: objetivoEstraido
@@ -84,18 +84,18 @@ export default function indexUnidad() {
         });
         arrayDatos.splice(indice, 1)
         console.log(arrayDatos);
-        const referencia = doc(db, "11111", "Niveles", "Nivel_1", router.query.id);
+        const referencia = doc(db, "11111", "Niveles", "Nivel_2", router.query.id);
         await updateDoc(referencia, {
             Objetivos: arrayDatos
         })
 
     }
-
+ 
     var num = 0
     return (
         <>
             <div className="section-contenido">
-                <Link href="/Unidad1/Unidad"><button className="btn-back">
+                <Link href="/Unidad2/Unidad"><button className="btn-back">
         <img className="img-back" src="/back.png" />
         </button></Link>
                 <h1 className="h1-position">{dataU.ID}</h1>

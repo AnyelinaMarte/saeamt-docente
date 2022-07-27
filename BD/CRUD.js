@@ -16,5 +16,5 @@ export const actualizar_Estudiante = async (codigoCentro, id, data) => {
     await updateDoc(doc(db, codigoCentro, "Usuarios", "Estudiantes", id), data)
 }
 export const actualizar_unidad = async (codigoCentro, idnivel, nombresubnivel, data) => {
-    await updateDoc(doc(db, codigoCentro, "Niveles", idnivel,nombresubnivel), data)
+    await updateDoc(doc(db, codigoCentro, "Niveles", idnivel, nombresubnivel), data)
 }
