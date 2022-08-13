@@ -1,15 +1,15 @@
 import Link from "next/link";
 import { db } from "../../BD/Configuracion";
-import { collection, getDocs, onSnapshot, query, orderBy } from "firebase/firestore";
+import { collection, getDocs, onSnapshot, query, orderBy,where } from "firebase/firestore";
 import { useEffect, useState } from 'react';
 
-export default function Unidad() {
+export default function Actividad() {
 
     const [dataU, setdataU] = useState([])
 
 
     useEffect(() => {
-        onSnapshot(query(collection(db, "11111", "Niveles", "Nivel_1"), orderBy("position", "asc")), (querySnapshot) => {
+        onSnapshot(query(collection(db, "11111", "Niveles", "Nivel_1"), where("position", ">", 1), orderBy("position", "asc")), (querySnapshot) => {
             const docs = []
             const prueba = []
             querySnapshot.forEach((doc) => {
@@ -25,16 +25,16 @@ export default function Unidad() {
     return (
 
         <div className="section-contenido">
-            <Link href="/Contenido"><button className="btn-back">
+            <Link href="/Actividades"><button className="btn-back">
         <img className="img-back" src="/back.png" />
         </button></Link>
-            <h1 className="h1-position">Contenido de la Unidad 1</h1>
+            <h1 className="h1-position">Actividades de la Unidad 1</h1>
 
             <div className="grid">
                 {dataU.map(u =>
-                    <><Link href={"/Unidad1/" + u.id}>
+                    <><Link href={"/ActividadesU1/" + u.id}>
                         <button >
-                            <small className="small">{u.position}</small>
+                            <small className="small">{u.position-1}</small>
                             {u.ID}
                         </button>
                     </Link>

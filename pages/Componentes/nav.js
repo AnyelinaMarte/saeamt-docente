@@ -60,7 +60,7 @@ export default function Nav(props){
           </Link>
           </li>
           <li>
-          <Link href="#">
+          <Link href="/Actividades">
             <a href="#">
               <i className='bx bx-pie-chart-alt-2' ></i>
               <span className="links_name">ACTIVIDADES</span>

@@ -2,7 +2,7 @@ import { db } from "../BD/Configuracion";
 import { collection, getDocs, onSnapshot, query, } from "firebase/firestore";
 import { useEffect, useState } from 'react';
 import { actualizar_Estudiante, add_Estudiante, delete_Estudiante } from "../BD/CRUD";
-
+import axios from "axios";
 
 export default function Estudiantes() {
 
@@ -11,27 +11,27 @@ export default function Estudiantes() {
         apellido_Estudiante: '',
         genero_Estudiante: '',
         fechan_Estudiante: '',
-        usuario_Estudiante: '',
-        clave_Estudiante: ''
+        correo_Estudiante: '',
+        clave_Estudiante: '',
+        posicionActual:{}
+
 
     }
     const [datosE, setDatosE] = useState(datosEstudiantes);
     const handleChange = (e) => {
         const { name, value } = e.target
         setDatosE({ ...datosE, [name]: value })
+        console.log(name, value)
     };
     const handleSubmit = (e) => {
         e.preventDefault()
-        if (datosE.nombre_Estudiante != '' && datosE.apellido_Estudiante != '' && datosE.genero_Estudiante != '' && datosE.fechan_Estudiante != '' && datosE.usuario_Estudiante != '' && datosE.clave_Estudiante != '') {
-            const resultado = dataE.filter(word => {
-                return word.usuario_Estudiante.toLowerCase() === datosE.usuario_Estudiante.toLowerCase()
-            })
-            if (resultado.length == 0) {
-                add_Estudiante("11111", datosE.usuario_Estudiante, datosE);
+        console.log(datosE)
+        datosE.posicionActual = {nivel:1,posicionNIvel:1}
+        if (datosE.nombre_Estudiante != '' && datosE.apellido_Estudiante != '' && datosE.genero_Estudiante != '' && datosE.fechan_Estudiante != '' && datosE.correo_Estudiante != '' && datosE.clave_Estudiante != '') {
+                axios.get(`http://localhost:4000/api/${datosE.clave_Estudiante}/${datosE.correo_Estudiante}`)
+                add_Estudiante("11111", datosE.correo_Estudiante, datosE);
                 setDatosE(datosEstudiantes)
-            } else {
-                console.log("Nombre de usuario en uso")
-            }
+            
 
         } else {
             console.log("No se admiten campos vacios")
@@ -115,7 +115,7 @@ export default function Estudiantes() {
 
 
                     <label > Fecha de Nacimiento:  <input value={datosE.fechan_Estudiante} onChange={handleChange} className="input-fechan" type="date" name="fechan_Estudiante" id="fechan_Estudiante" /></label>
-                    <label > Usuario: <input value={datosE.usuario_Estudiante} onChange={handleChange} className="input-user" type="text" name="usuario_Estudiante" id="usuario_Estudiante" /></label>
+                    <label > Usuario: <input value={datosE.correo_Estudiante} onChange={handleChange} className="input-user" type="text" name="correo_Estudiante" id="correo_Estudiante" /></label>
                     <label > Clave: <input value={datosE.clave_Estudiante} onChange={handleChange} className="input-clave" type="password" name="clave_Estudiante" id="clave_Estudiante" /></label>
 
 
@@ -124,7 +124,7 @@ export default function Estudiantes() {
 
                 </form>
 
-            </div>
+            </div> 
 
             <div className="table-estudiantes">
                 <h3>Estudiantes Registrados</h3>
@@ -170,13 +170,13 @@ export default function Estudiantes() {
                                     {n.fechan_Estudiante}
                                 </td>
                                 <td>
-                                    {n.usuario_Estudiante}
+                                    {n.correo_Estudiante}
                                 </td>
                                 <td>
                                     <button onClick={() => setcurrentId(n.id)} >Editar</button>
                                 </td>
                                 <td>
-                                    <button onClick={() => eliminar(n.id, n.nombre_Estudiante, n.apellido_Estudiante, n.genero_Estudiante, n.fechan_Estudiante, n.usuario_Estudiante)}>Eliminar</button>
+                                    <button onClick={() => eliminar(n.id, n.nombre_Estudiante, n.apellido_Estudiante, n.genero_Estudiante, n.fechan_Estudiante, n.correo_Estudiante)}>Eliminar</button>
 
                                 </td>
 

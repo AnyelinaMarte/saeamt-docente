@@ -1,8 +1,10 @@
 import "../styles/Form.css";
+import "../styles/Actividades.css";
 import "../styles/Index.css";
 import "../styles/Estudiantes.css";
 import "../styles/Contenido.css";
 import "../styles/Configuracion.css"
+import "../styles/Componentes.css"
 import { auth } from "../BD/Configuracion"
 import { useState } from "react";
 import Login_docente from './Formularios/Login_Docente';
