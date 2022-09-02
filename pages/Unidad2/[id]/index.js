@@ -90,7 +90,22 @@ export default function indexUnidad() {
         })
 
     }
- 
+    var modal = document.getElementById("myModal");
+
+    const open = (e) => {
+        e.preventDefault();
+        if (dataU.Video != ''){
+        modal.style.display = "block";
+        setLink(dataU.Video)}else{
+            console.log("No hay link")
+        }
+    }
+    const close = () => {
+        modal.style.display = "none";
+
+    }
+    const [link, setLink] = useState("")
+    const LinkVideo = link.substr((link.length - 11), link.length);
     var num = 0
     return (
         <>
@@ -98,13 +113,13 @@ export default function indexUnidad() {
                 <Link href="/Unidad2/Unidad"><button className="btn-back">
         <img className="img-back" src="/back.png" />
         </button></Link>
-                <h1 className="h1-position">{dataU.ID}</h1>
+                <h1 className="h1-position">{dataU.Nombre}</h1>
                     <hr className="hr-d"></hr>
                 <div className="columnas">
 
                     <form className="frm-letras">
                         <div>
-                            <label className="label-frm">Definición de {dataU.ID}</label>
+                            <label className="label-frm">Definición de {dataU.Nombre}</label>
                         </div>
                         <div>
                             <textarea value={dataU.Definicion}></textarea >
@@ -115,14 +130,25 @@ export default function indexUnidad() {
                         </div>
                         <hr className="hr-de"></hr>
                         <div>
-                            <label className="label-frm">Video sobre {dataU.ID}</label>
+                            <label className="label-frm">Video sobre {dataU.Nombre}</label>
                         </div>
                         <div>
                         <div  >
                             <textarea id="textarea-video" value={dataU.Video}></textarea >
                             <textarea placeholder="Escribe aquí para actualizar el contenido de la izquierda." onChange={handleChange2} type="text" name="Video" id="Video" value={data2.Video}></textarea>
                         </div>
-                        <button className="btn-video">  <img className="img-back" src="/ver.png" /></button>
+                        <button className="btn-video" onClick={open} >  <img className="img-back" src="/ver.png" /></button>
+                            <div id="myModal" className="modal">
+                                <div className="modal-content">
+                                    <span onClick={close} class="close">&times;</span>
+                                    <iframe className="VDO"
+                                        src={"https://www.youtube.com/embed/" + LinkVideo + "?autoplay=1&origin"}
+                                        title="YouTube video player"
+                                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                        allowfullscreen>
+                                    </iframe>
+                                </div>
+                            </div>
                         </div>
                         <div>
                             <button className="btn-form btn" onClick={handleSubmit2}> Guardar Cambios</button>
@@ -132,7 +158,7 @@ export default function indexUnidad() {
                    
                   
                         <form className="frm-letras">
-                            <label className="label-frm">Objetivos a cumplir en el tema {dataU.ID}</label>
+                            <label className="label-frm">Objetivos a cumplir en el tema {dataU.Nombre}</label>
                             <br></br>
                             <label id="label">Descripcion</label>
                             <input id="objetivo" />

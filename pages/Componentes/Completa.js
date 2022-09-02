@@ -18,7 +18,7 @@ export default function Completa(props){
     const [extraeE,setextraeE] = useState("")
 
     useEffect(() => {
-        onSnapshot(query(doc(db, "11111", "Niveles", "Nivel_1", props.id,"Completa","encabezado")), (querySnapshot) => {
+        onSnapshot(query(doc(db, "11111", "Niveles", props.nivel, props.id,"Completa","encabezado")), (querySnapshot) => {
             if(querySnapshot.exists()){
                 setextraeE(querySnapshot.data().encabezado)
             }
@@ -39,9 +39,9 @@ export default function Completa(props){
         e.preventDefault()
         if (data.pregunta != ''  && data.respuesta != '') {
             extraeE == ""?
-                add_completa_encabezado("11111", "Nivel_1", props.id, "encabezado", datoE)
+                add_completa_encabezado("11111", props.nivel, props.id, "encabezado", datoE)
             :console.log(" ")
-            add_completa("11111", "Nivel_1", props.id, data);
+            add_completa("11111", props.nivel, props.id, data);
             setData(datos_Inicial)
             
         } else {
@@ -51,7 +51,7 @@ export default function Completa(props){
     }
     const [completaData, setCompletaData] = useState([])
     useEffect(()=>{
-        onSnapshot(query(collection(db, "11111", "Niveles", "Nivel_1", props.id,"Completa")), (querySnapshot)=>{
+        onSnapshot(query(collection(db, "11111", "Niveles", props.nivel, props.id,"Completa")), (querySnapshot)=>{
             const data = []
             querySnapshot.forEach((doc=>{
                 if(doc.id != "encabezado"){
@@ -62,6 +62,7 @@ export default function Completa(props){
         })
         
     },[])
+    var num =0;
     return(
         <>
             <div className="section-contenido">
@@ -77,20 +78,63 @@ export default function Completa(props){
                             <input className="encabezado" placeholder="Ingrese el encabezado de la actividad." onChange={handleChange1}  name="encabezado" value={data.encabezado} />
                             :  <input className="encabezado" placeholder="Ingrese el encabezado de la actividad."  name="encabezado" value={extraeE} /> 
                         }
-
-                        <label>Pregunta</label><input id="pregunta" name="pregunta" placeholder="Ingrese la pregunta" onChange={handleChange} value={data.pregunta}/>
-                        <label>Respuesta</label><input id="respuesta" name="respuesta" placeholder="Ingrese la respuesta" onChange={handleChange} value={data.respuesta} />
-                        <button onClick={handleSubmit}>add</button>
+                        <div className="pr">
+                        <label className="label-completa">Pregunta</label><input className="input-completa" id="pregunta" name="pregunta" placeholder="Ingrese la pregunta" onChange={handleChange} value={data.pregunta}/>
+                        <label className="label-completa">Respuesta</label><input className="input-completa" id="respuesta" name="respuesta" placeholder="Ingrese la respuesta" onChange={handleChange} value={data.respuesta} />
+                        </div>
+                        <button className="btn-cpt" onClick={handleSubmit}>Agregar</button>
                     </form>
-                    {completaData.length != 0?
-                        completaData.map(e=>
-                            <div >
-                                <span>{e.pregunta}</span>
-                                <span>{e.respuesta}</span>
-                            </div>
-                        )
-                        :<h1>No existen preguntas</h1>
-                    }
+                    <hr className="hr-de"></hr>
+                    <h3>Actividad</h3>
+                    <> 
+                   
+                   { extraeE != ""? 
+                    <h4 >{extraeE} </h4>
+                     :<h4>No existe encabezado de actividad</h4>
+                     
+                 }
+                 <table className="table-a">
+                        <tr>
+                            <th>
+                                N.°
+                            </th>
+                            <th>
+                               Pregunta
+                            </th>
+
+                            <th>
+                                Respuesta
+                            </th>
+                        </tr>
+                        
+                        {completaData.length != 0?
+                        completaData.map(n =>
+                            <>
+                                <tr>
+                                    <td>
+                                        {num += 1}
+                                    </td>
+                                    <td>
+                                        {n.pregunta}
+                                    </td>
+
+                                    <td>
+                                        {n.respuesta}
+                                    </td>
+                                </tr>
+
+                            </>
+
+                        ) :<h1>No existen preguntas</h1>
+                        }
+
+                    </table>
+                    
+                     
+                       
+                       
+                    
+                    </>
             </div>
         </>
        

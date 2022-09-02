@@ -3,7 +3,9 @@ import { addDoc, collection, deleteDoc, doc, setDoc, updateDoc } from "firebase/
 import { async } from "@firebase/util";
 
 
-
+export const actualizar_Docente = async (codigoCentro, usuario, data) => {
+    await updateDoc(doc(db, codigoCentro, "Usuarios", "Docentes", usuario,"BD-Docente","DatosPersonales"), data);
+}
 export const add_Estudiante = async (codigoCentro, usuarioEstudiante, data) => {
     await setDoc(doc(db, codigoCentro, "Usuarios", "Estudiantes", usuarioEstudiante), data);
 

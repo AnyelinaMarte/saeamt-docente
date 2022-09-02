@@ -9,9 +9,9 @@ export default function Actividad() {
 
 
     useEffect(() => {
-        onSnapshot(query(collection(db, "11111", "Niveles", "Nivel_1"), where("position", ">", 1), orderBy("position", "asc")), (querySnapshot) => {
+        onSnapshot(query(collection(db, "11111", "Niveles", "Nivel_2"), where("position", ">", 1), orderBy("position", "asc")), (querySnapshot) => {
             const docs = []
-            const prueba = []
+            
             querySnapshot.forEach((doc) => {
                 docs.push({ ...doc.data(), id: doc.id })
 
@@ -28,11 +28,11 @@ export default function Actividad() {
             <Link href="/Actividades"><button className="btn-back">
         <img className="img-back" src="/back.png" />
         </button></Link>
-            <h1 className="h1-position">Actividades de la Unidad 1</h1>
+            <h1 className="h1-position">Actividades de la Unidad 2</h1>
 
             <div className="grid">
                 {dataU.map(u =>
-                    <><Link href={"/ActividadesU1/" + u.id}>
+                    <><Link href={"/ActividadesU2/" + u.id}>
                         <button >
                             <small className="small">{u.position-1}</small>
                             {u.ID}

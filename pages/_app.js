@@ -1,5 +1,4 @@
 import "../styles/Form.css";
-import "../styles/Actividades.css";
 import "../styles/Index.css";
 import "../styles/Estudiantes.css";
 import "../styles/Contenido.css";

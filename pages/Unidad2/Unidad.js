@@ -28,7 +28,7 @@ export default function Unidad() {
             <Link href="/Contenido"><button className="btn-back">
         <img className="img-back" src="/back.png" />
         </button></Link>
-            <h1 className="h1-position">Unidad 2</h1>
+            <h1 className="h1-position">Contenido de la Unidad 2</h1>
 
             <div className="grid">
                 {dataU.map(u =>

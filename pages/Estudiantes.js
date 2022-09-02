@@ -13,25 +13,30 @@ export default function Estudiantes() {
         fechan_Estudiante: '',
         correo_Estudiante: '',
         clave_Estudiante: '',
-        posicionActual:{}
-
-
+        posicionActual: {},
     }
+
     const [datosE, setDatosE] = useState(datosEstudiantes);
+   
+
     const handleChange = (e) => {
         const { name, value } = e.target
         setDatosE({ ...datosE, [name]: value })
-        console.log(name, value)
+        
     };
+
+
     const handleSubmit = (e) => {
         e.preventDefault()
-        console.log(datosE)
-        datosE.posicionActual = {nivel:1,posicionNIvel:1}
+        datosE.posicionActual = { nivel: 1, posicionNIvel: 1 }
+       
+
         if (datosE.nombre_Estudiante != '' && datosE.apellido_Estudiante != '' && datosE.genero_Estudiante != '' && datosE.fechan_Estudiante != '' && datosE.correo_Estudiante != '' && datosE.clave_Estudiante != '') {
-                axios.get(`http://localhost:4000/api/${datosE.clave_Estudiante}/${datosE.correo_Estudiante}`)
+                
+            axios.get(`https://registrodeestudiante.herokuapp.com/api/${datosE.clave_Estudiante}/${datosE.correo_Estudiante}`)
                 add_Estudiante("11111", datosE.correo_Estudiante, datosE);
                 setDatosE(datosEstudiantes)
-            
+
 
         } else {
             console.log("No se admiten campos vacios")
@@ -40,6 +45,13 @@ export default function Estudiantes() {
     }
     const Data = []
     const [currentId, setcurrentId] = useState('')
+    const [editarData, seteditarData] = useState(datosEstudiantes)
+
+    const handleChange2 = (e) => {
+        const { name, value } = e.target
+        seteditarData({ ...editarData, [name]: value })
+        
+    }; 
     const extraerData = async (id) => {
         await getDocs(collection(db, '11111', 'Usuarios', 'Estudiantes'))
             .then(querySnapshot => {
@@ -48,10 +60,12 @@ export default function Estudiantes() {
                     if (doc.id == id) {
                         Data.pop()
                         Data.push({ ...doc.data() })
+                        
                     }
-                })
-                setDatosE({ ...Data[0] })
+                
 
+                })
+                seteditarData({ ...Data[0] })
             })
     }
     useEffect(() => {
@@ -62,9 +76,17 @@ export default function Estudiantes() {
 
     const editar = (e) => {
         e.preventDefault()
-        actualizar_Estudiante('11111', currentId, datosE);
-        setDatosE(datosEstudiantes)
-        setcurrentId('')
+        if (editarData.nombre_Estudiante != '' && editarData.apellido_Estudiante != '' && editarData.genero_Estudiante != '' && editarData.fechan_Estudiante != '' && editarData.correo_Estudiante != '' && editarData.clave_Estudiante != '') {
+                
+            actualizar_Estudiante('11111', currentId, editarData);
+        seteditarData(datosEstudiantes)
+        setcurrentId('') 
+
+
+        } else {
+            console.log("No se admiten campos vacios")
+        }
+       
     }
     const eliminar = (id, nombre, apellido, genero, fecha, usuario) => {
         const datos = {
@@ -100,10 +122,11 @@ export default function Estudiantes() {
     return (
         <>
             <div className="section-estudiantes">
+                {currentId.length == 0? 
                 <form >
                     <h3>Registrar Estudiantes</h3>
 
-                    <label > Nombre: <input value={datosE.nombre_Estudiante} onChange={handleChange} className="input-name" type="text" name="nombre_Estudiante" id="nombre_Estudiante" /></label>
+                    <label > Nombre: <input name="nombre_Estudiante" id="nombre_Estudiante" value={datosE.nombre_Estudiante} onChange={handleChange} className="input-name" type="text" /></label>
                     <label > Apellido: <input value={datosE.apellido_Estudiante} onChange={handleChange} type="text" name="apellido_Estudiante" id="apellido_Estudiante" /> </label>
                     <label > Genero:
                         <select value={datosE.genero_Estudiante} onChange={handleChange} name="genero_Estudiante" id="genero_Estudiante">
@@ -114,17 +137,40 @@ export default function Estudiantes() {
                     </label>
 
 
-                    <label > Fecha de Nacimiento:  <input value={datosE.fechan_Estudiante} onChange={handleChange} className="input-fechan" type="date" name="fechan_Estudiante" id="fechan_Estudiante" /></label>
+                    <label > Fecha de Nacimiento:  <input value={datosE.fechan_Estudiante} onChange={handleChange} min="2012-01-01" max="2014-01-01" className="input-fechan" type="date" name="fechan_Estudiante" id="fechan_Estudiante" /></label>
                     <label > Usuario: <input value={datosE.correo_Estudiante} onChange={handleChange} className="input-user" type="text" name="correo_Estudiante" id="correo_Estudiante" /></label>
                     <label > Clave: <input value={datosE.clave_Estudiante} onChange={handleChange} className="input-clave" type="password" name="clave_Estudiante" id="clave_Estudiante" /></label>
 
 
-                    {currentId.length == 0 ? <button onClick={handleSubmit} >Registrar</button> : <button onClick={editar} >Actualizar</button>}
+                     <button onClick={handleSubmit} >Registrar</button> 
+                     
+                     
 
 
+                </form>:
+                <form> 
+                    <h3>Actualizar Estudiante</h3>
+
+                    <label > Nombre: <input name="nombre_Estudiante" id="nombre_Estudiante" value={editarData.nombre_Estudiante} onChange={handleChange2} className="input-name" type="text" /></label>
+                    <label > Apellido: <input value={editarData.apellido_Estudiante} onChange={handleChange2} type="text" name="apellido_Estudiante" id="apellido_Estudiante" /> </label>
+                    <label > Genero:
+                        <select value={editarData.genero_Estudiante} onChange={handleChange2} name="genero_Estudiante" id="genero_Estudiante">
+                            <option value="Seleccione" selected>Seleccione</option>
+                            <option value="Masculino" >Masculino</option>
+                            <option value="Femenino" >Femenino</option>
+                        </select>
+                    </label>
+
+
+                    <label > Fecha de Nacimiento:  <input value={editarData.fechan_Estudiante} onChange={handleChange2} min="2012-01-01" max="2014-01-01" className="input-fechan" type="date" name="fechan_Estudiante" id="fechan_Estudiante" /></label>
+                    <label > Usuario: <input disabled value={editarData.correo_Estudiante} onChange={handleChange2} className="input-user" type="text" name="correo_Estudiante" id="correo_Estudiante" /></label>
+                    <label > Clave: <input disabled value={editarData.clave_Estudiante} onChange={handleChange2} className="input-clave" type="password" name="clave_Estudiante" id="clave_Estudiante" /></label>
+
+
+                    <button onClick={editar} >Actualizar</button> 
                 </form>
-
-            </div> 
+                }   
+            </div>
 
             <div className="table-estudiantes">
                 <h3>Estudiantes Registrados</h3>

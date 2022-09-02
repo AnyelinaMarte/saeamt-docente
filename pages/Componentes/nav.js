@@ -12,7 +12,7 @@ export default function Nav(props){
     useEffect(()=>{
       auth.onAuthStateChanged(async user=>{
         if(user != null){
-          //console.log(user.email)
+      
          const docRef = doc(db,"11111","Usuarios","Docentes",user.email,"BD-Docente","DatosPersonales");
           await getDoc(docRef).then(doc =>{
            setuserData(doc.data().nombre)
@@ -76,6 +76,14 @@ export default function Nav(props){
             
           </li>
           <li>
+            
+            <a >
+              <i className='bx bx-coin-stack' ></i>
+              <span className="links_name">JUEGOS</span>
+            </a>
+            
+          </li>
+          <li>
           <Link href="/Configuracion">
              <a>
               <i className='bx bx-book-alt' ></i>
@@ -99,10 +107,7 @@ export default function Nav(props){
           <i className='bx bx-menu sidebarBtn'></i>
           <span className="dashboard">Matemáticas</span>
         </div>
-        <div className="search-box">
-          <input type="text" placeholder="Search..." />
-          <i className='bx bx-search' ></i>
-        </div>
+        
         <div className="profile-details">
         <img src="/user.png" />
           <span className="admin_name">{userData}</span>

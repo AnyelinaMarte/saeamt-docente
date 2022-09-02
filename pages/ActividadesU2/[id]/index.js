@@ -16,10 +16,10 @@ export default function indexActividad1() {
             {posicionActual == "principal" ?
                 <>
                     <div className="section-contenido">
-                        <Link href="/ActividadesU1/Actividad"><button className="btn-back">
+                        <Link href="/ActividadesU2/Actividad"><button className="btn-back">
                             <img className="img-back" src="/back.png" />
                         </button></Link>
-                        <h1 className="h1-position">{"Actividades de la Unidad 1" + "-" + router.query.id}</h1>
+                        <h1 className="h1-position">{"Actividades de la Unidad 2" + "-" + router.query.id}</h1>
 
                         <div className="grid">
 
@@ -42,13 +42,13 @@ export default function indexActividad1() {
 
                     </div>
                 </> : posicionActual == "completa" ?
-                    <Completa nivel={"Nivel_1"} id={router.query.id} ButtonAtras={() => setPosicion("principal")} />
+                    <Completa nivel={"Nivel_2"} id={router.query.id} ButtonAtras={() => setPosicion("principal")} />
                     : posicionActual == "VyF" ?
-                        <VyF nivel={"Nivel_1"} id={router.query.id} ButtonAtras={() => setPosicion("principal")} />
+                        <VyF nivel={"Nivel_2"} id={router.query.id} ButtonAtras={() => setPosicion("principal")} />
                         :posicionActual == "seleccionmultiple" ? 
-                        <Seleccionmultiple nivel={"Nivel_1"} id={router.query.id} ButtonAtras={() => setPosicion("principal")}/>
+                        <Seleccionmultiple nivel={"Nivel_2"} id={router.query.id} ButtonAtras={() => setPosicion("principal")}/>
                         :posicionActual == "razona"?
-                        <Razona nivel={"Nivel_1"} id={router.query.id} ButtonAtras={() => setPosicion("principal")}/>
+                        <Razona nivel={"Nivel_2"} id={router.query.id} ButtonAtras={() => setPosicion("principal")}/>
                         :<h1>hey</h1>
             }
         </div>
