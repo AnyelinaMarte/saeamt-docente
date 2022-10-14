@@ -5,6 +5,8 @@ import Completa from "../../Componentes/Completa";
 import Razona from "../../Componentes/Razona";
 import Seleccionmultiple from "../../Componentes/Seleccionmultiple";
 import VyF from "../../Componentes/VyF";
+import Ejemplo from "../../Componentes/Ejemplo";
+
 export default function indexActividad1() {
     const router = useRouter()
 
@@ -15,6 +17,7 @@ export default function indexActividad1() {
 
             {posicionActual == "principal" ?
                 <>
+                
                     <div className="section-contenido">
                         <Link href="/ActividadesU2/Actividad"><button className="btn-back">
                             <img className="img-back" src="/back.png" />
@@ -23,33 +26,25 @@ export default function indexActividad1() {
 
                         <div className="grid">
 
-                            <a className="a-registro" >Ejemplo</a>
+                        <a className="a-registro" onClick={() => setPosicion("ejemplo")}>Ejemplo</a>
 
 
-                            <a className="a-registro" onClick={() => setPosicion("completa")}>Completa</a>
+                            
 
                             <a className="a-registro" onClick={() => setPosicion("seleccionmultiple")}>Seleccion Multiple</a>
-                            <a className="a-registro" onClick={() => setPosicion("VyF")}>Verdadero y Falso</a>
+                            
 
-                            <a className="a-registro" onClick={() => setPosicion("razona")}>Razona</a>
-
-                            <Link href="#">
-                                <button >
-                                    Aparea
-                                </button>
-                            </Link>
+                            
                         </div>
 
                     </div>
-                </> : posicionActual == "completa" ?
-                    <Completa nivel={"Nivel_2"} id={router.query.id} ButtonAtras={() => setPosicion("principal")} />
-                    : posicionActual == "VyF" ?
-                        <VyF nivel={"Nivel_2"} id={router.query.id} ButtonAtras={() => setPosicion("principal")} />
+                </> 
                         :posicionActual == "seleccionmultiple" ? 
                         <Seleccionmultiple nivel={"Nivel_2"} id={router.query.id} ButtonAtras={() => setPosicion("principal")}/>
-                        :posicionActual == "razona"?
-                        <Razona nivel={"Nivel_2"} id={router.query.id} ButtonAtras={() => setPosicion("principal")}/>
+                        :posicionActual == "ejemplo" ?
+                        <Ejemplo nivel={"Nivel_2"}  id={router.query.id} ButtonAtras={() => setPosicion("principal")}/>
                         :<h1>hey</h1>
+                        
             }
         </div>
 

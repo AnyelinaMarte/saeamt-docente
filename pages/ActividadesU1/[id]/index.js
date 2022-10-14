@@ -2,6 +2,7 @@ import Link from "next/link";
 import { useRouter } from 'next/router';
 import { useState } from 'react';
 import Completa from "../../Componentes/Completa";
+import Ejemplo from "../../Componentes/Ejemplo";
 import Razona from "../../Componentes/Razona";
 import Seleccionmultiple from "../../Componentes/Seleccionmultiple";
 import VyF from "../../Componentes/VyF";
@@ -23,7 +24,7 @@ export default function indexActividad1() {
 
                         <div className="grid">
 
-                            <a className="a-registro" >Ejemplo</a>
+                            <a className="a-registro" onClick={() => setPosicion("ejemplo")} >Ejemplo</a>
 
 
                             <a className="a-registro" onClick={() => setPosicion("completa")}>Completa</a>
@@ -33,11 +34,7 @@ export default function indexActividad1() {
 
                             <a className="a-registro" onClick={() => setPosicion("razona")}>Razona</a>
 
-                            <Link href="#">
-                                <button >
-                                    Aparea
-                                </button>
-                            </Link>
+                            
                         </div>
 
                     </div>
@@ -49,6 +46,8 @@ export default function indexActividad1() {
                         <Seleccionmultiple nivel={"Nivel_1"} id={router.query.id} ButtonAtras={() => setPosicion("principal")}/>
                         :posicionActual == "razona"?
                         <Razona nivel={"Nivel_1"} id={router.query.id} ButtonAtras={() => setPosicion("principal")}/>
+                        :posicionActual == "ejemplo" ?
+                        <Ejemplo nivel={"Nivel_1"}  id={router.query.id} ButtonAtras={() => setPosicion("principal")}/>
                         :<h1>hey</h1>
             }
         </div>

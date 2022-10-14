@@ -20,6 +20,9 @@ export default function Login_docente() {
             // ...
 
         })
+        .catch((error) => {
+            console.log("Credenciales incorrectas" + error)
+          });
     }
 
 

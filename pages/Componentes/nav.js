@@ -26,7 +26,7 @@ export default function Nav(props){
         <div className="sidebar" >
         <div className="logo-details">
           <i className='bx bxl-c-plus-plus'></i>
-          <span className="logo_name">S.A.E.A.M <br></br>3er Grado</span>
+          <span className="logo_name">CELEO <br></br>3er Grado</span>
         </div>
         <ul className="nav-links">
           <li>
@@ -45,12 +45,7 @@ export default function Nav(props){
               </a>
             </Link>
           </li>
-          <li>
-            <a href="#">
-              <i className='bx bx-list-ul' ></i>
-              <span className="links_name">PROGRESO</span>
-            </a>
-          </li>
+         
           <li>
           <Link href="/Contenido">
             <a href="#">
@@ -67,21 +62,13 @@ export default function Nav(props){
             </a>
           </Link>
           </li>
+          
+          
           <li>
-            
-            <a >
-              <i className='bx bx-coin-stack' ></i>
-              <span className="links_name">AVISOS</span>
+            <a href="#">
+              <i className='bx bx-list-ul' ></i>
+              <span className="links_name">PROGRESO</span>
             </a>
-            
-          </li>
-          <li>
-            
-            <a >
-              <i className='bx bx-coin-stack' ></i>
-              <span className="links_name">JUEGOS</span>
-            </a>
-            
           </li>
           <li>
           <Link href="/Configuracion">
