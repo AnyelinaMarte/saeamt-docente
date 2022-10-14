@@ -46,23 +46,7 @@ export default function Nav(props){
             </Link>
           </li>
          
-          <li>
-          <Link href="/Contenido">
-            <a href="#">
-              <i className='bx bx-pie-chart-alt-2' ></i>
-              <span className="links_name">CONTENIDO</span>
-            </a>
-          </Link>
-          </li>
-          <li>
-          <Link href="/Actividades">
-            <a href="#">
-              <i className='bx bx-pie-chart-alt-2' ></i>
-              <span className="links_name">ACTIVIDADES</span>
-            </a>
-          </Link>
-          </li>
-          
+         
           
           <li>
             <a href="#">
@@ -74,7 +58,7 @@ export default function Nav(props){
           <Link href="/Configuracion">
              <a>
               <i className='bx bx-book-alt' ></i>
-              <span className="links_name">CONFIGURACION</span>
+              <span className="links_name">CONFIGURACIÓN</span>
               </a>
             </Link>
             
