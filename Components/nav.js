@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth,db } from "../../BD/configuracion";
+import { auth,db } from "../BD/configuracion";
 import { doc, getDoc } from "firebase/firestore";
 import {useState, useEffect} from 'react'; 
 export default function Nav(props){
@@ -29,14 +29,7 @@ export default function Nav(props){
           <span className="logo_name">CELEO <br></br>3er Grado</span>
         </div>
         <ul className="nav-links">
-          <li>
-          <Link href="/">
-            <a>
-              <i className='bx bx-grid-alt' ></i>
-              <span className="links_name">HOME</span>
-            </a>
-          </Link>
-          </li>
+          
           <li>
             <Link href="/Estudiantes">
              <a>
@@ -45,15 +38,16 @@ export default function Nav(props){
               </a>
             </Link>
           </li>
-         
-         
-          
           <li>
-            <a href="#">
-              <i className='bx bx-list-ul' ></i>
+          <Link href="/">
+            <a>
+              <i className='bx bx-grid-alt' ></i>
               <span className="links_name">PROGRESO</span>
             </a>
+          </Link>
           </li>
+         
+          
           <li>
           <Link href="/Configuracion">
              <a>

@@ -84,3 +84,229 @@
 .table-estudiantes td{
     text-align: center;
 }
+.progreso{
+    position: absolute;
+    top: 17%;
+    left: 23.6%;
+  }
+ table{
+    margin-top: 20px;
+    width: 100%;
+    margin-right: auto;
+    text-align: center;
+    font-size: 18px;
+  }
+  th{
+    margin: 14px;
+    padding: 5px;
+    background-color: rgb(50, 50, 50);
+    color: white;
+
+  }
+  tr{
+    cursor: pointer;
+    border:2px solid black ;
+    background-color: white;
+
+  }
+  tr:hover{
+    background-color: #8bf3ff;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.167);
+  }
+  td{
+    padding: 5px;
+    margin: 14px;
+  }
+ 
+.progreso h1{
+    text-align: center;
+    font-size: 34px;
+}
+.perfil-button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.perfil-button button{
+    border: none;
+    color: white;
+    font-weight: 900;
+    margin: 20px;
+    cursor: pointer;
+    padding: 10px;
+    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.307);
+    font-size: 19px;
+    border-radius: 20px;
+    background-color: rgb(41, 0, 153);
+}
+.estadistica{
+    position: absolute;
+    top: 100px;
+    left: 300px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    width: 800px;
+}
+.BuscadorEstudiantes{
+    width: 450px;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+    justify-content: center;
+}
+.BuscadorEstudiantes img{
+    width: 30px;
+    height: 30px;
+    margin-left: 4px;
+    
+
+}
+.BuscadorEstudiantes input{
+    height: 100%;
+    border: none;
+    box-shadow: 2px 2px 9px rgba(0, 0, 0, 0.208);
+    width: 400px;
+    border-radius:10px ;
+    text-align: center;
+    margin: 0%;
+}
+.BuscadorEstudiantes input::placeholder{
+    text-align: center;
+    font-size: 17px;
+}
+.BuscadorEstudiantes input:hover{
+    border: 3px solid ;
+    border-color: #0084ff;
+}
+.progreso-estadistica h3{
+    text-align: left;
+}
+.progreso-estadistica{
+    margin-top: 70px;
+}
+.estadistica-niveles{
+    margin-top: 25px;
+}
+.estadistica-niveles h4{
+    margin-top: 15px;
+}
+.estadistica-niveles div{
+    margin-top: 25px;
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    justify-content: center;
+}
+.estadistica-niveles button{
+    cursor: pointer;
+    border: none;
+    font-size: 16px;
+    background-color: #04bab4;
+    padding: 6px 35px;
+    margin: 10px;
+    color: white;
+    font-weight: bolder;
+}
+.estadistica-niveles button:hover{
+    background-color: #00eee6;
+}
+.progress-bar{
+    position: relative;
+    width: 100%;
+    height: 27px;
+    background-color: #ccc;
+    border-radius: 2em;
+    overflow: hidden;
+    transition: 1s;
+
+}
+.progress-bar::before{
+    content: '';
+    position: absolute;
+    width: 0%;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-color: #006aff;
+    color: white;
+}
+
+.progresoNivel{ 
+    margin-top: 40px;
+}
+
+.progreso-estadistica span{
+    font-weight: 600;
+}
+.progresoObjetivos{
+    margin-top: 34px;
+    font-weight: 700;
+}
+.progresoObjetivos p{
+    background-color: #006aff;
+    color: white;
+    padding: 8px;
+    border-radius: 15px;
+
+    text-align: left;
+    margin: 5px;
+}
+.progresoObjetivos span{
+    color: #00ffd9;
+    margin-bottom: 15px;
+    font-size: 20px;
+}
+#selectBox{
+    font-weight: 600;
+    text-align: center;
+    border: none;
+    border-radius: 10px;
+    background-color: #04bab4;
+    color: white;
+    font-size:18px ;
+    margin-top: 25px;
+}
+.progresoObjetivos button{
+    margin: 20px;
+    border: none;
+    font-weight: 500;
+    font-size: 18px;
+    background-color: transparent;
+    cursor: pointer;
+    color: #006aff;
+    text-decoration:underline;
+}
+.perfil-button-w{
+    margin: 0;
+    position: relative;
+}
+.contador-progreso{
+    width: 100%;
+    display: grid;
+    font-weight: 600;
+    font-size: 13px;
+    grid-template-columns: 20px 1fr;
+    border-radius: 30px;
+
+}
+.progresoObjetivos h2{
+    text-align: left;
+    font-size: 20px;
+    background-color: #3c71ae;
+    background-color: #006aff;
+    width: 270px;
+    border-top-right-radius: 14px;
+    color: white;
+    border: 1px solid #0a265b;
+
+}
+.contador-progreso div{
+    text-align: left;
+    padding:5px;
+    background-color: #006aff;
+    color: white;
+    border: 1px solid #0a265b;
+}
+.Separador{
+    margin-top: 40px;
+}

@@ -188,7 +188,7 @@ export default function Estudiantes() {
                         </th>
                         <th>
                             Fecha de Nacimiento
-                        </th>
+                        </th>   
                         <th>
                             Usuario
                         </th>
