@@ -13,7 +13,7 @@ export default function Nav(props){
       auth.onAuthStateChanged(async user=>{
         if(user != null){
       
-         const docRef = doc(db,"11111","Usuarios","Docentes",user.email,"BD-Docente","DatosPersonales");
+         const docRef = doc(db,"11111","Usuarios","Docentes",user.email);
           await getDoc(docRef).then(doc =>{
            setuserData(doc.data().nombre)
           })

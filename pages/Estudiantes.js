@@ -2,9 +2,15 @@ import { db } from "../BD/Configuracion";
 import { collection, getDocs, onSnapshot, query, } from "firebase/firestore";
 import { useEffect, useState } from 'react';
 import { actualizar_Estudiante, add_Estudiante, delete_Estudiante } from "../BD/CRUD";
-import axios from "axios";
-
+import axios, { AxiosError } from "axios";
+import { LineWave } from  'react-loader-spinner'
+import AlertaAgreado from "../Components/AlertaAgreado";
+import AlertaEliminar from "../Components/AlertaEliminar";
 export default function Estudiantes() {
+    const [cargando, setCargando] = useState(false)
+    const [activarCampoVacio, setActivarCampoVacio] = useState(false)
+    const [activarEliminar, setEliminar] = useState(false)
+    const [elimina, setElimina] = useState(false)
 
     const datosEstudiantes = {
         nombre_Estudiante: '',
@@ -13,7 +19,14 @@ export default function Estudiantes() {
         fechan_Estudiante: '',
         correo_Estudiante: '',
         clave_Estudiante: '',
-        posicionActual: {},
+        posicionActual: {
+            nivel1:1,
+            nivel2:1,
+            nivel3:1,
+            nivel4:1,
+
+        },
+        
     }
 
     const [datosE, setDatosE] = useState(datosEstudiantes);
@@ -25,21 +38,25 @@ export default function Estudiantes() {
         
     };
 
-
-    const handleSubmit = (e) => {
+    const [activarAlerta, setActivarAlerta] = useState(false)
+    const handleSubmit =async (e) => {
         e.preventDefault()
-        datosE.posicionActual = { nivel: 1, posicionNIvel: 1 }
        
 
         if (datosE.nombre_Estudiante != '' && datosE.apellido_Estudiante != '' && datosE.genero_Estudiante != '' && datosE.fechan_Estudiante != '' && datosE.correo_Estudiante != '' && datosE.clave_Estudiante != '') {
+            datosE.correo_Estudiante = `${datosE.correo_Estudiante}@eleo.edu.do`
+                setCargando(true)
+                axios.get(`https://registrodeestudiante.herokuapp.com/api/${datosE.clave_Estudiante}/${datosE.correo_Estudiante}`)
+                setTimeout(()=>{
+                    setCargando(false)
+                    add_Estudiante("11111", datosE.correo_Estudiante, datosE);
+                    setDatosE(datosEstudiantes)
+                    setActivarAlerta(true)
+                }, 9000)
                 
-            axios.get(`https://registrodeestudiante.herokuapp.com/api/${datosE.clave_Estudiante}/${datosE.correo_Estudiante}`)
-                add_Estudiante("11111", datosE.correo_Estudiante, datosE);
-                setDatosE(datosEstudiantes)
-
-
         } else {
-            console.log("No se admiten campos vacios")
+            setActivarCampoVacio(true)
+
         }
 
     }
@@ -81,24 +98,30 @@ export default function Estudiantes() {
             actualizar_Estudiante('11111', currentId, editarData);
         seteditarData(datosEstudiantes)
         setcurrentId('') 
+        setActivarAlerta(true)
+
 
 
         } else {
-            console.log("No se admiten campos vacios")
+            setActivarCampoVacio(true)
+
         }
        
     }
     const eliminar = (id, nombre, apellido, genero, fecha, usuario) => {
-        const datos = {
-            Nombre: nombre,
-            Apellido: apellido,
-            Genero: genero,
-            Fecha_Nacimiento: fecha,
-            Usuario: usuario
-
-
-        }
-        delete_Estudiante("11111", id, datos);
+        setEliminar(true)
+        if(elimina == true){
+            const datos = {
+                Nombre: nombre,
+                Apellido: apellido,
+                Genero: genero,
+                Fecha_Nacimiento: fecha,
+                Usuario: usuario
+    
+    
+            }
+            delete_Estudiante("11111", id, datos);
+        } 
 
     }
 
@@ -118,123 +141,178 @@ export default function Estudiantes() {
         })
 
     }, [])
-
+  
     return (
         <>
+        
             <div className="section-estudiantes">
+
                 {currentId.length == 0? 
+                <div>
+                <h3>Registrar Estudiantes</h3>
                 <form >
-                    <h3>Registrar Estudiantes</h3>
-
-                    <label > Nombre: <input name="nombre_Estudiante" id="nombre_Estudiante" value={datosE.nombre_Estudiante} onChange={handleChange} className="input-name" type="text" /></label>
-                    <label > Apellido: <input value={datosE.apellido_Estudiante} onChange={handleChange} type="text" name="apellido_Estudiante" id="apellido_Estudiante" /> </label>
+                    <div> 
+                        <label > Nombre: <input name="nombre_Estudiante" id="nombre_Estudiante" value={datosE.nombre_Estudiante} onChange={handleChange} className="input-name" type="text" placeholder="Nombre Estudiante" /></label>
+                    </div>
+                    <div>
+                        <label > Apellido: <input value={datosE.apellido_Estudiante} onChange={handleChange} type="text" name="apellido_Estudiante" id="apellido_Estudiante" placeholder="Apellido Estudiante" /> </label>
+                    </div>
+                   <div>
                     <label > Genero:
-                        <select value={datosE.genero_Estudiante} onChange={handleChange} name="genero_Estudiante" id="genero_Estudiante">
-                            <option value="Seleccione" selected>Seleccione</option>
-                            <option value="Masculino" >Masculino</option>
-                            <option value="Femenino" >Femenino</option>
-                        </select>
-                    </label>
-
-
+                            <select value={datosE.genero_Estudiante} onChange={handleChange} name="genero_Estudiante" id="genero_Estudiante">
+                                <option value="Seleccione" selected>Seleccione</option>
+                                <option value="Masculino" >Masculino</option>
+                                <option value="Femenino" >Femenino</option>
+                            </select>
+                        </label>
+                   </div>
+                   <div>
                     <label > Fecha de Nacimiento:  <input value={datosE.fechan_Estudiante} onChange={handleChange} min="2012-01-01" max="2014-01-01" className="input-fechan" type="date" name="fechan_Estudiante" id="fechan_Estudiante" /></label>
-                    <label > Usuario: <input value={datosE.correo_Estudiante} onChange={handleChange} className="input-user" type="text" name="correo_Estudiante" id="correo_Estudiante" /></label>
+                   </div>
+                   <div>
+                     <label > Usuario: <input value={datosE.correo_Estudiante} onChange={handleChange} className="input-user" type="email" name="correo_Estudiante" id="correo_Estudiante" /> @eleo.edu.do</label>
+                   </div>
+                   <div>
                     <label > Clave: <input value={datosE.clave_Estudiante} onChange={handleChange} className="input-clave" type="password" name="clave_Estudiante" id="clave_Estudiante" /></label>
+                   </div>
+                <button onClick={handleSubmit} >Registrar</button> 
 
-
-                     <button onClick={handleSubmit} >Registrar</button> 
-                     
-                     
-
-
-                </form>:
-                <form> 
-                    <h3>Actualizar Estudiante</h3>
-
-                    <label > Nombre: <input name="nombre_Estudiante" id="nombre_Estudiante" value={editarData.nombre_Estudiante} onChange={handleChange2} className="input-name" type="text" /></label>
-                    <label > Apellido: <input value={editarData.apellido_Estudiante} onChange={handleChange2} type="text" name="apellido_Estudiante" id="apellido_Estudiante" /> </label>
-                    <label > Genero:
-                        <select value={editarData.genero_Estudiante} onChange={handleChange2} name="genero_Estudiante" id="genero_Estudiante">
-                            <option value="Seleccione" selected>Seleccione</option>
-                            <option value="Masculino" >Masculino</option>
-                            <option value="Femenino" >Femenino</option>
-                        </select>
-                    </label>
-
-
-                    <label > Fecha de Nacimiento:  <input value={editarData.fechan_Estudiante} onChange={handleChange2} min="2012-01-01" max="2014-01-01" className="input-fechan" type="date" name="fechan_Estudiante" id="fechan_Estudiante" /></label>
-                    <label > Usuario: <input disabled value={editarData.correo_Estudiante} onChange={handleChange2} className="input-user" type="text" name="correo_Estudiante" id="correo_Estudiante" /></label>
-                    <label > Clave: <input disabled value={editarData.clave_Estudiante} onChange={handleChange2} className="input-clave" type="password" name="clave_Estudiante" id="clave_Estudiante" /></label>
-
-
-                    <button onClick={editar} >Actualizar</button> 
                 </form>
+
+                    
+                </div>:
+                <div><h3>Actualizar Estudiante</h3>
+                    <form> 
+
+                        <label > Nombre: <input name="nombre_Estudiante" id="nombre_Estudiante" value={editarData.nombre_Estudiante} onChange={handleChange2} className="input-name" type="text" /></label>
+                        <label > Apellido: <input value={editarData.apellido_Estudiante} onChange={handleChange2} type="text" name="apellido_Estudiante" id="apellido_Estudiante" /> </label>
+                        <label > Genero:
+                            <select value={editarData.genero_Estudiante} onChange={handleChange2} name="genero_Estudiante" id="genero_Estudiante">
+                                <option value="Seleccione" selected>Seleccione</option>
+                                <option value="Masculino" >Masculino</option>
+                                <option value="Femenino" >Femenino</option>
+                            </select>
+                        </label>
+
+
+                        <label > Fecha de Nacimiento:  <input value={editarData.fechan_Estudiante} onChange={handleChange2} min="2012-01-01" max="2014-01-01" className="input-fechan" type="date" name="fechan_Estudiante" id="fechan_Estudiante" /></label>
+                        <label > Usuario: <input disabled value={editarData.correo_Estudiante} onChange={handleChange2} className="input-user" type="text" name="correo_Estudiante" id="correo_Estudiante" /></label>
+                        <label > Clave: <input disabled value={editarData.clave_Estudiante} onChange={handleChange2} className="input-clave" type="password" name="clave_Estudiante" id="clave_Estudiante" /></label>
+
+
+                        <button onClick={editar} >Actualizar</button> 
+                    </form>
+                </div>
                 }   
             </div>
 
             <div className="table-estudiantes">
-                <h3>Estudiantes Registrados</h3>
-                <table>
+            <h3>Estudiantes Registrados</h3>
 
-                    <tr>
-                        <th>
-                            Nombre
-                        </th>
-                        <th>
-                            Apellido
-                        </th>
-                        <th>
-                            Genero
-                        </th>
-                        <th>
-                            Fecha de Nacimiento
-                        </th>   
-                        <th>
-                            Usuario
-                        </th>
-                        <th>
-                            Editar
-                        </th>
-                        <th>
-                            Eliminar
-                        </th>
-                    </tr>
-                    {dataE.map(n =>
-                        <>
-                            <tr>
-                                <td>
+            {cargando == false?
+                 <table>
 
-                                    {n.nombre_Estudiante}
-                                </td>
-                                <td>
-                                    {n.apellido_Estudiante}
-                                </td>
-                                <td>
-                                    {n.genero_Estudiante}
-                                </td>
-                                <td>
-                                    {n.fechan_Estudiante}
-                                </td>
-                                <td>
-                                    {n.correo_Estudiante}
-                                </td>
-                                <td>
-                                    <button onClick={() => setcurrentId(n.id)} >Editar</button>
-                                </td>
-                                <td>
-                                    <button onClick={() => eliminar(n.id, n.nombre_Estudiante, n.apellido_Estudiante, n.genero_Estudiante, n.fechan_Estudiante, n.correo_Estudiante)}>Eliminar</button>
+                 <tr>
+                     <th>
+                         Nombre
+                     </th>
+                     <th>
+                         Apellido
+                     </th>
+                     <th>
+                         Genero
+                     </th>
+                     <th>
+                         Fecha de Nacimiento
+                     </th>   
+                     <th>
+                         Usuario
+                     </th>
+                     <th>
+                         Editar
+                     </th>
+                     <th>
+                         Eliminar
+                     </th>
+                 </tr>
+                 {dataE.map(n =>
+                     <>
+                         <tr>
+                             <td>
 
-                                </td>
+                                 {n.nombre_Estudiante}
+                             </td>
+                             <td>
+                                 {n.apellido_Estudiante}
+                             </td>
+                             <td>
+                                 {n.genero_Estudiante}
+                             </td>
+                             <td>
+                                 {n.fechan_Estudiante}
+                             </td>
+                             <td>
+                                 {n.correo_Estudiante}
+                             </td>
+                             <td>
+                                 <button onClick={() => setcurrentId(n.id)} >Editar</button>
+                             </td>
+                             <td>
+                                 <button onClick={() => eliminar(n.id, n.nombre_Estudiante, n.apellido_Estudiante, n.genero_Estudiante, n.fechan_Estudiante, n.correo_Estudiante)}>Eliminar</button>
+
+                             </td>
 
 
 
-                            </tr>
-                        </>
+                         </tr>
+                     </>
 
-                    )}
-                </table>
+                 )}
+             </table>
+             :<div className="cargando-linewave">
+                <div>
+                <LineWave
+                    height="500"
+                    width="500"
+                    color="#fff"
+                    ariaLabel="line-wave"
+                    wrapperStyle={{}}
+                    wrapperClass=""
+                    visible={cargando}
+                    firstLineColor=""
+                    middleLineColor=""
+                    lastLineColor=""
+                    />
+                </div>
+                    
+                    <span>Creando Estudiante</span>
+             </div>
+        
+        }
+             
+
+             {activarAlerta == false?
+                <span></span>
+            :<div>
+                <AlertaAgreado mensaje="Agregado correctamente"/>
+                {setTimeout(()=>{setActivarAlerta(false)},2000)}
             </div>
-
+            }
+            {activarCampoVacio == false?
+                <span></span>
+            :<div>
+                <AlertaAgreado mensaje="No se admiten campos vacios"/>
+                {setTimeout(()=>{setActivarCampoVacio(false)},1000)}
+            </div>
+            }
+               {
+                activarEliminar==false?
+                    <span></span>
+                :<div>
+                    <AlertaEliminar buttonEliminar={()=>setElimina(true)} ButtonCancelar={()=>setEliminar(false)}/>
+                </div>
+               }
+            </div>
         </>
     )
 }

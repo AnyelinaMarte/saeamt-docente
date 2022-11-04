@@ -2,12 +2,12 @@
   "name": "saeamt-docente",
   "version": "0.1.0",
   "private": true,
+  "domain": "",
   "scripts": {
-    "dev": "next",
+    "dev": "next dev",
     "build": "next build",
-    "export": "next export",
-    "deploy": "npm run build && npm run export",
-    "start": "next start"
+    "start": "next start",
+    "lint": "next lint"
   },
   "dependencies": {
     "@emotion/react": "^11.10.0",
@@ -21,8 +21,9 @@
     "react": "18.1.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "18.1.0",
+    "react-loader-spinner": "^5.3.4",
     "styled-components": "^5.3.5",
-    "sweetalert2": "^11.5.1"
+    "sweetalert2": "^11.6.5"
   },
   "devDependencies": {
     "eslint": "8.16.0",

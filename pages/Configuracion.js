@@ -20,7 +20,7 @@ export default function Configuracion() {
         auth.onAuthStateChanged(async user => {
             if (user != null) {
 
-                const docRef = doc(db, "11111", "Usuarios", "Docentes", user.email, "BD-Docente", "DatosPersonales");
+                const docRef = doc(db, "11111", "Usuarios", "Docentes", user.email);
                 await getDoc(docRef).then(doc => {
                     seteditarData(doc.data())
                 })
@@ -34,16 +34,19 @@ export default function Configuracion() {
         seteditarData({ ...editarData, [name]: value })
     }
     const editar = (e) => {
-        e.preventDefault()
-        if (editarData.nombre != '' && editarData.apellido != '' && editarData.idEscuela != '' && editarData.telefono != '' && editarData.centro_educativo != '') {
-
-            actualizar_Docente('11111', editarData.correo, editarData);
-
-
-
-        } else {
-            console.log("No se admiten campos vacios")
+       auth.onAuthStateChanged(user=>{
+        if(user != null){
+            e.preventDefault()
+            if (editarData.nombre != '' && editarData.apellido != '' && editarData.idEscuela != '' && editarData.telefono != '' && editarData.centro_educativo != '') {
+                actualizar_Docente('11111', user.email, editarData);
+    
+    
+    
+            } else {
+                console.log("No se admiten campos vacios")
+            }
         }
+       })
 
     }
     //Ver correo
@@ -53,7 +56,7 @@ export default function Configuracion() {
         auth.onAuthStateChanged(async user => {
             if (user != null) {
 
-                const docRef = doc(db, "11111", "Usuarios", "Docentes", user.email, "BD-Docente", "DatosPersonales");
+                const docRef = doc(db, "11111", "Usuarios", "Docentes", user.email);
                 await getDoc(docRef).then(doc => {
                     setdataCorreo(doc.data().correo)
                 })

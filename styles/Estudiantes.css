@@ -4,66 +4,69 @@
     left: 17.6%;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
-    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
     padding: 30px;
     margin: 2px;
     width: 82.2%;
-   
-    
-}
-
-
-.section-estudiantes h3{
-    text-align: center;
-    padding-bottom: 2%;
+    display: grid;
+    grid-template-columns: 1fr 1fr ;
+    row-gap: 20px;
 }
 .section-estudiantes label{
-    padding: 5px;
-}
-.section-estudiantes input, option{
+    font-weight: bold;
     margin: 5px;
-    padding: 2px;
-    appearance: none;
-    width: 21%;
-    
+    padding: 5px;
+    width: 100%;
+    font-size: 20px;
+    margin-top: 10px;
 }
 .section-estudiantes select{
-    margin: 7px;
-    padding: 4px;
-    appearance: none;
-    width: 24%;
+    width: 75%;
+    text-align: center;
+    font-weight: bold;
+    border: none;
+    font-size: 20px;
+
+}
+
+.section-estudiantes input{
+    width: 75%;
+    font-size: 20px;
+
+    background-color: transparent;
+    border: 3px solid black;
+    border-color: transparent transparent black transparent;
+
+}
+.section-estudiantes input[type="date"]{
+    width: 46%;
+
+}
+.section-estudiantes input[type="email"]{
+    width: 41%;
+
+}
+.section-estudiantes input::placeholder{
+    font-size: 20px;
 }
 .section-estudiantes button{
-    margin: 2% 0% 1% 45%;
+    position: absolute;
+    width: 50%;
+    left: 25%;
+    bottom: -70px;
+    border-radius: 20px;
+    background-color: rgb(57, 71, 255);
+    color: white;
+    font-weight: bolder;
+    padding: 10px;
+    font-size: 23px;
+    border: none;
     cursor: pointer;
-  width: 3cm;
-  height: 1.2cm;
-  padding: .375rem .75rem;
-  border-radius: 100px;
-  font-weight: bolder;
-  border: none;
-  background-color: #2697FF;
 }
-.section-estudiantes button:hover{
-    box-shadow: 0 10px 16px 0 rgba(0, 0, 0, 0.2), 0 8px 20px 0 rgba(0, 0, 0, 0.19);
-    background-color: #065cad;
-}
-.section-estudiantes .input-name{ 
-    width: 25%;
-}
-.section-estudiantes .input-fechan{ 
-    width: 15.5%;
-}
-.section-estudiantes .input-user{
-    width: 21.5%;
-}
-.section-estudiantes .input-clave{
-    width: 25%;
-}
+
 
 .table-estudiantes table{
     position: absolute;
-    top: 59%;
+    top: 65%;
     left: 17.6%;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
@@ -77,7 +80,7 @@
     text-align: center;
     padding-bottom: 2%;
     position: absolute;
-    top: 58%;
+    top: 64%;
     left:50%;
 }
 
@@ -309,4 +312,100 @@
 }
 .Separador{
     margin-top: 40px;
+}
+.cargando-linewave{
+    top: 0;
+    left:0 ;
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    background-color: rgba(2, 22, 77, 0.536);
+    
+    text-align: center;
+    color: white;
+    
+  }
+  .cargando-linewave div{
+    margin-right: auto;
+    margin-left:25%;
+    width: 500px;
+
+    margin-top: 10px;
+   
+  }
+
+  .cargando-linewave span{
+    font-size: 30px;
+
+  }
+  .AlertaAgregado{
+    position: fixed;
+    bottom: -90px;
+    background-color: #2600ff;
+    width: 620px;
+    padding-top: 8px;
+    height: 80px;
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+    border-radius: 30px;
+    text-align: center;
+    left: 30%;
+    font-size: 40px;
+    animation: agregado 2s ;
+  }
+@keyframes agregado {
+    
+    0%{ bottom: 10; 
+    background-color: #2600ff;
+    }
+    40%{ bottom: 20%;
+        background-color: #2600ffa3;
+    }
+    50%{ bottom: 15; 
+        background-color: #2600ff;
+    }
+    60%{ bottom: 5%;
+        background-color: #2600ffa3;
+    }
+    60%{ bottom: -90px;
+        background-color: #2600ffa3;
+    }
+    
+    
+}
+.alertaA{
+    position: fixed;
+    background-color: #0000001c;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+}
+.eliminar {
+    margin-top: 150px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgb(236, 20, 99);
+    width: 400px;
+    color: white;
+    text-align: center;
+    padding: 20px;
+    border-radius: 30px;
+    height: 190px;
+}
+.eliminar h4{
+    font-size: 19px;
+    margin-bottom: 7px;
+}
+.eliminar p{
+    font-size: 13px;
+}
+.eliminar button{
+    font-weight: bold;
+    border: none;
+    margin: 10px;
+    padding: 5px;
+    font-size: 19px;
+    cursor: pointer;
+    border-radius: 30px;
+
 }
