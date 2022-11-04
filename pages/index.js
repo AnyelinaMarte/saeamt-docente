@@ -88,10 +88,7 @@ export default function Home() {
       const porcentaje =( ((nivel1.length + nivel2.length + nivel3.length + nivel4.length) * 100 ) / 17)
       setPorcentaje(porcentaje)
   }
-  useEffect(()=>{
-    const porcentaje =( ((nivelCalificaciones.length + nivel2Calificaciones.length + nivel3Calificaciones.length + nivel4Calificaciones.length ) * 100 ) / 17)
-    setPorcentaje(porcentaje)
-  }, [])
+  
   const handleChange =(e)=>{
     const {name, value}= e.target
     var text = value
@@ -146,7 +143,7 @@ export default function Home() {
           </tr>
         {
         buscar.map(n=>
-            <tr onClick={()=>seleccionarEstudiante(n.correo_Estudiante, n)}>
+            <tr key={n.correo_Estudiante} onClick={()=>seleccionarEstudiante(n.correo_Estudiante, n)}>
               <td>
                 {n.nombre_Estudiante}
               </td>

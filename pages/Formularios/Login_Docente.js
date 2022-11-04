@@ -1,7 +1,7 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
 import { auth } from "../../BD/configuracion";
-
+import Image from 'next/image'
 
 export default function Login_docente() {
     const [alertContrasena, setAlertContrasena] = useState("")
@@ -46,7 +46,7 @@ export default function Login_docente() {
                         <div className="login" >
 
                         <div>
-                            <img className="img-login" src="logo.ico" alt="hola"/>
+                         
                             <h1 className="h1-login">Iniciar Sesión</h1><br></br>
                         </div>
                         <div className="display-login">

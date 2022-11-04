@@ -3,14 +3,14 @@
   "version": "0.1.0",
   "engines": {
     "node": "16.x",
-    "npm":"8.x"
+    "npm": "8.x"
   },
   "private": true,
   "domain": "",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
-    "start": "next start -p $PORT",
+    "start": "next start",
     "lint": "next lint"
   },
   "dependencies": {
@@ -28,5 +28,9 @@
     "react-loader-spinner": "^5.3.4",
     "styled-components": "^5.3.5",
     "sweetalert2": "^11.6.5"
+  },
+  "devDependencies": {
+    "eslint": "^8.16.0",
+    "eslint-config-next": "12.1.6"
   }
 }

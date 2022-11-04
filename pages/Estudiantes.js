@@ -101,12 +101,12 @@ export default function Estudiantes() {
                 seteditarData({ ...Data[0] })
             })
     }
-    useEffect(() => {
 
-        extraerData(currentId)
+    const current = (id)=>{
+        setcurrentId(id)
+        extraerData(id)
 
-    }, [currentId])
-
+    } 
     const editar = (e) => {
         e.preventDefault()
         if (editarData.nombre_Estudiante != '' && editarData.apellido_Estudiante != '' && editarData.genero_Estudiante != '' && editarData.fechan_Estudiante != '' && editarData.correo_Estudiante != '' && editarData.clave_Estudiante != '') {
@@ -275,7 +275,7 @@ export default function Estudiantes() {
                                  {n.correo_Estudiante}
                              </td>
                              <td>
-                                 <button onClick={() => setcurrentId(n.id)} >Editar</button>
+                                 <button onClick={() => current(n.id)} >Editar</button>
                              </td>
                              <td>
                                  <button onClick={() => eliminar(n.id, n.nombre_Estudiante, n.apellido_Estudiante, n.genero_Estudiante, n.fechan_Estudiante, n.correo_Estudiante)}>Eliminar</button>
