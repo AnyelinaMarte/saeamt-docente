@@ -3,9 +3,11 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth,db } from "../BD/configuracion";
 import { doc, getDoc } from "firebase/firestore";
 import {useState, useEffect} from 'react'; 
+import CerrarSeccion from "./CerrarSeccion";
 export default function Nav(props){
+    const [cerrarSe, setCerrarSeccion] = useState(false) 
     const cerrar=()=>{
-        auth.signOut()
+        setCerrarSeccion(true)
     }
 
     const [userData, setuserData] = useState("")
@@ -83,7 +85,10 @@ export default function Nav(props){
       </section>
  
       {props.children}
-  
+      {cerrarSe == false?
+          <span></span>
+        :<CerrarSeccion ButtonCancelar={()=>setCerrarSeccion(false)}/>
+      }
       </main>
     )
 }

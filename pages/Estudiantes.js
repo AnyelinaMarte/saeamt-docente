@@ -10,7 +10,14 @@ export default function Estudiantes() {
     const [cargando, setCargando] = useState(false)
     const [activarCampoVacio, setActivarCampoVacio] = useState(false)
     const [activarEliminar, setEliminar] = useState(false)
-    const [elimina, setElimina] = useState(false)
+    const [elimina, setElimina] = useState("")
+    const [datosEliminar, setDatosEliminar] =useState({
+                Nombre: "",
+                Apellido: "",
+                Genero: "",
+                Fecha_Nacimiento: "",
+                Usuario: ""
+    })
 
     const datosEstudiantes = {
         nombre_Estudiante: '',
@@ -110,7 +117,7 @@ export default function Estudiantes() {
     }
     const eliminar = (id, nombre, apellido, genero, fecha, usuario) => {
         setEliminar(true)
-        if(elimina == true){
+        setElimina(id)
             const datos = {
                 Nombre: nombre,
                 Apellido: apellido,
@@ -120,8 +127,9 @@ export default function Estudiantes() {
     
     
             }
-            delete_Estudiante("11111", id, datos);
-        } 
+            setDatosEliminar(datos)
+
+            
 
     }
 
@@ -141,7 +149,10 @@ export default function Estudiantes() {
         })
 
     }, [])
-  
+    const borrar =()=>{
+        delete_Estudiante("11111", elimina, datosEliminar) 
+        setEliminar(false)
+    }
     return (
         <>
         
@@ -309,7 +320,7 @@ export default function Estudiantes() {
                 activarEliminar==false?
                     <span></span>
                 :<div>
-                    <AlertaEliminar buttonEliminar={()=>setElimina(true)} ButtonCancelar={()=>setEliminar(false)}/>
+                    <AlertaEliminar buttonEliminar={borrar} ButtonCancelar={()=>setEliminar(false)}/>
                 </div>
                }
             </div>

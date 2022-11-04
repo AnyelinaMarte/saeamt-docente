@@ -140,7 +140,7 @@ export default function Home() {
                   Fecha de Nacimiento
               </th>   
               <th>
-                  Usuario
+                  Correo
               </th>
               
           </tr>
@@ -199,7 +199,11 @@ export default function Home() {
 
             </div>
           </>
-          :<span></span>
+          :email === "" ? <span></span>
+          :<div className="realizado-no">
+            <h2>Este estudiante aún no ha realizado práctica</h2>
+          </div>
+        
         }
       </div>
       <div>

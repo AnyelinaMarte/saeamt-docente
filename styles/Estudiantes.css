@@ -409,3 +409,10 @@
     border-radius: 30px;
 
 }
+.realizado-no{
+    background-color: rgb(48, 82, 255);
+    color: white;
+    font-size: 20px;
+    padding: 20px;
+    border-radius: 20px;
+}
