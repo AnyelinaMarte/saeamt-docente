@@ -10,6 +10,7 @@ export default function Estudiantes() {
     const [cargando, setCargando] = useState(false)
     const [activarCampoVacio, setActivarCampoVacio] = useState(false)
     const [activarEliminar, setEliminar] = useState(false)
+    const [activarReptido, setActivarRepetido] = useState(false)
     const [elimina, setElimina] = useState("")
     const [datosEliminar, setDatosEliminar] =useState({
                 Nombre: "",
@@ -52,6 +53,10 @@ export default function Estudiantes() {
 
         if (datosE.nombre_Estudiante != '' && datosE.apellido_Estudiante != '' && datosE.genero_Estudiante != '' && datosE.fechan_Estudiante != '' && datosE.correo_Estudiante != '' && datosE.clave_Estudiante != '') {
             datosE.correo_Estudiante = `${datosE.correo_Estudiante}@eleo.edu.do`
+            const resultado =  dataE.filter(datas=>{
+                return datas.correo_Estudiante  == datosE.correo_Estudiante 
+            })
+               if(resultado.length == 0){
                 setCargando(true)
                 axios.get(`https://registrodeestudiante.herokuapp.com/api/${datosE.clave_Estudiante}/${datosE.correo_Estudiante}`)
                 setTimeout(()=>{
@@ -60,6 +65,10 @@ export default function Estudiantes() {
                     setDatosE(datosEstudiantes)
                     setActivarAlerta(true)
                 }, 9000)
+               }
+               else{
+                setActivarRepetido(true)
+               }
                 
         } else {
             setActivarCampoVacio(true)
@@ -314,6 +323,13 @@ export default function Estudiantes() {
             :<div>
                 <AlertaAgreado mensaje="No se admiten campos vacios"/>
                 {setTimeout(()=>{setActivarCampoVacio(false)},1000)}
+            </div>
+            }
+             {activarReptido == false?
+                <span></span>
+            :<div>
+                <AlertaAgreado mensaje="Correo existente"/>
+                {setTimeout(()=>{setActivarRepetido(false)},1000)}
             </div>
             }
                {
