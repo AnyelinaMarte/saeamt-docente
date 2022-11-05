@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { auth } from "../../BD/configuracion";
+import { auth } from "../BD/configuracion";
 import Image from 'next/image'
 
 export default function Login_docente() {

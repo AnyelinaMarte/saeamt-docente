@@ -7,7 +7,7 @@ import "../styles/Estudiantes.css";
 
 import { auth } from "../BD/Configuracion"
 import { useState } from "react";
-import Login_docente from './Formularios/Login_Docente';
+import Login_docente from './Login_Docente';
 import Nav from "../Components/nav";
 function MyApp({ Component, pageProps }) {
   const [nombreUsuario, setnombreUsuario] = useState(null);
