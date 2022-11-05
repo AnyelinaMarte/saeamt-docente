@@ -1,6 +1,6 @@
-import { db } from "./Configuracion";
 import { addDoc, collection, deleteDoc, doc, setDoc, updateDoc } from "firebase/firestore";
 import { async } from "@firebase/util";
+import { db } from "./Configuracion";
 
 
 export const actualizar_Docente = async (codigoCentro, usuario, data) => {
