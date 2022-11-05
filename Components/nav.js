@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { onAuthStateChanged } from "firebase/auth";
-import { auth,db } from "../BD/configuracion";
+import { auth,db } from "../Configuracion";
 import { doc, getDoc } from "firebase/firestore";
 import {useState, useEffect} from 'react'; 
 import CerrarSeccion from "./CerrarSeccion";
@@ -73,10 +73,9 @@ export default function Nav(props){
         <div className="sidebar-button">
           <i className='bx bx-menu sidebarBtn'></i>
           <span className="dashboard">Matemáticas</span>
-        </div>
+        </div> 
         
         <div className="profile-details">
-        <img src="/user.png" />
           <span className="admin_name">{userData}</span>
           <i className='bx bx-chevron-down' ></i>
         </div>

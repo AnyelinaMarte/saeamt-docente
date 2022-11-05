@@ -1,4 +1,4 @@
-import { auth } from "../BD/Configuracion"
+import { auth } from "../Configuracion"
 
 export default function CerrarSeccion(props){
     const cerrar = ()=>{
@@ -16,4 +16,4 @@ export default function CerrarSeccion(props){
     </div>
 
     )
-}
+} 

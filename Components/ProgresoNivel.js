@@ -1,7 +1,7 @@
 import { Chart } from "chart.js"
 import { collection, doc, getDoc, getDocs, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
-import { db } from "../BD/Configuracion"
+import { db } from "../Configuracion"
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -204,7 +204,7 @@ export default function ProgresoNivel(props){
                             <Bar  data={dataBar(ObjetivosProgreso1, "Numero de veces Correcta", "Numero de veces Incorrecta")} />
                             <h2>Leyenda del objetivo 1</h2>
                             {GeneralLabelsPreguntar(ObjetivosProgreso1).map(e=>
-                                <div className="contador-progreso">
+                                <div key={e.pregunta} className="contador-progreso">
                                     <div>{e.contar}</div>
                                     <div>{e.pregunta}</div>
                                 </div>
@@ -219,7 +219,7 @@ export default function ProgresoNivel(props){
                             <Bar  data={dataBar(ObjetivosProgreso2, "Numero de veces Correcta", "Numero de veces Incorrecta")} />
                             <h2>Leyenda del objetivo 2</h2>
                             {GeneralLabelsPreguntar(ObjetivosProgreso2).map(e=>
-                                <div className="contador-progreso">
+                                <div key={e.pregunta} className="contador-progreso">
                                     <div>{e.contar}</div>
                                     <div>{e.pregunta}</div>
                                 </div>
@@ -234,7 +234,7 @@ export default function ProgresoNivel(props){
                             <Bar  data={dataBar(ObjetivosProgreso3, "Numero de veces Correcta", "Numero de veces Incorrecta")} />
                             <h2>Leyenda del objetivo 3</h2>
                             {GeneralLabelsPreguntar(ObjetivosProgreso3).map(e=>
-                                <div className="contador-progreso">
+                                <div key={e.pregunta} className="contador-progreso">
                                     <div>{e.contar}</div>
                                     <div>{e.pregunta}</div>
                                 </div>
@@ -249,7 +249,7 @@ export default function ProgresoNivel(props){
                             <Bar  data={dataBar(ObjetivosProgreso4, "Numero de veces Correcta", "Numero de veces Incorrecta")} />
                             <h2>Leyenda del objetivo 4</h2>
                             {GeneralLabelsPreguntar(ObjetivosProgreso4).map(e=>
-                                <div className="contador-progreso">
+                                <div key={e.pregunta} className="contador-progreso">
                                     <div>{e.contar}</div>
                                     <div>{e.pregunta}</div>
                                 </div>
@@ -264,7 +264,7 @@ export default function ProgresoNivel(props){
                             <Bar  data={dataBar(ObjetivosProgreso5, "Numero de veces Correcta", "Numero de veces Incorrecta")} />
                             <h2>Leyenda del objetivo 5</h2>
                             {GeneralLabelsPreguntar(ObjetivosProgreso5).map(e=>
-                                <div className="contador-progreso">
+                                <div key={e.pregunta} className="contador-progreso">
                                     <div>{e.contar}</div>
                                     <div>{e.pregunta}</div>
                                 </div>
@@ -274,6 +274,6 @@ export default function ProgresoNivel(props){
                 }
             </div>
             
-        </div>
+        </div> 
     )
 }

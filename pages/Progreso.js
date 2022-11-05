@@ -1,6 +1,6 @@
 import { collection, doc, getDoc, getDocs, onSnapshot, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
-import { auth, db } from "../BD/Configuracion"
+import { auth, db } from "../Configuracion"
 
 export default function Progeso({correo}){
     const [data, setData] = useState({nombre_Estudiante:"", apellido_Estudiante:"", posicionActual:""})
@@ -54,7 +54,7 @@ export default function Progeso({correo}){
                             intentoCorrecta = intentoCorrecta +docu.intentoCorrecta
                             numeroDeVecesIncorrectas = numeroDeVecesIncorrectas + docu.numeroDeVecesIncorrectas
         
-                        })
+                        }) 
                         const division = 100 - ((numeroDeVecesIncorrectas / intentoCorrecta) * 100) 
                         const numeroRedondeado = Math.round(division)
                         if(docus.id == "Secuencias" || docus.id == "Adicion" || docus.id == "Division" || docus.id == "Multiplicacion" || docus.id == "NumerosOrdinales" || docus.id == "Numeros_pares_impares" || docus.id == "SignosComparacion" || docus.id == "Sustraccion" || docus.id == "ValorPosicion"){

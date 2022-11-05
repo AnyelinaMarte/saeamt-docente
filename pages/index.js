@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { collection, getDocs, query, doc, getDoc} from "firebase/firestore";
-import { db } from "../BD/Configuracion";
+import { db } from "../Configuracion";
 import ProgresoNivel from "../Components/ProgresoNivel";
 export default function Home() {
   const [id, setId] = useState([])
@@ -102,7 +102,7 @@ export default function Home() {
       })
       setbuscar(newData)
 
-  }
+  } 
   const seleccionarEstudiante = (correo, datos)=>{
     getData(correo)
     setEmail(correo)

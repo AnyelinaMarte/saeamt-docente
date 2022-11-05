@@ -1,7 +1,7 @@
-import { db } from "../BD/Configuracion";
+import { db } from "../Configuracion";
 import { collection, getDocs, onSnapshot, query, } from "firebase/firestore";
 import { useEffect, useState } from 'react';
-import { actualizar_Estudiante, add_Estudiante, delete_Estudiante } from "../BD/CRUD";
+import { actualizar_Estudiante, add_Estudiante, delete_Estudiante } from "../CRUD";
 import axios, { AxiosError } from "axios";
 import { LineWave } from  'react-loader-spinner'
 import AlertaAgreado from "../Components/AlertaAgreado";
@@ -293,7 +293,7 @@ export default function Estudiantes() {
                 <div>
                 <LineWave
                     height="500"
-                    width="500"
+                    width="500" 
                     color="#fff"
                     ariaLabel="line-wave"
                     wrapperStyle={{}}

@@ -1,6 +1,6 @@
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { useState } from "react";
-import { auth } from "../BD/configuracion";
+import { auth } from "../Configuracion";
 import Image from 'next/image'
 
 export default function Login_docente() {
@@ -27,7 +27,7 @@ export default function Login_docente() {
             console.log(error.code)
             if(error.code == "auth/wrong-password"){
                 setAlertContrasena(error.code)
-            }
+            } 
             
             if(error.code == "auth/user-not-found"){
                 setAlertCorreo(error.code)

@@ -5,7 +5,7 @@ import "../styles/Configuracion.css"
 import "../styles/Componentes.css"
 import "../styles/Estudiantes.css";
 
-import { auth } from "../BD/Configuracion"
+import { auth } from "../Configuracion"
 import { useState } from "react";
 import Login_docente from './Login_Docente';
 import Nav from "../Components/nav";
@@ -24,7 +24,7 @@ function MyApp({ Component, pageProps }) {
         <>
         <Nav>
         <Component {...pageProps} />
-        </Nav>
+        </Nav> 
         
         </>
       ) : (

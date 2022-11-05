@@ -1,4 +1,4 @@
-import { db } from "../BD/Configuracion";
+import { db } from "./Configuracion";
 import { addDoc, collection, deleteDoc, doc, setDoc, updateDoc } from "firebase/firestore";
 import { async } from "@firebase/util";
 
@@ -14,7 +14,7 @@ export const delete_Estudiante = async (codigoCentro, id, data) => {
     await setDoc(doc(db, codigoCentro, "Usuarios", "Estudiantes-Eliminados", id), data);
     await deleteDoc(doc(db, '11111', "Usuarios", "Estudiantes", id))
 
-}
+} 
 export const actualizar_Estudiante = async (codigoCentro, id, data) => {
     await updateDoc(doc(db, codigoCentro, "Usuarios", "Estudiantes", id), data);
 }

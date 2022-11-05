@@ -2,7 +2,7 @@ import { async } from "@firebase/util"
 import { updateEmail, updatePassword } from "firebase/auth"
 import { collection, doc, getDoc, getDocs, onSnapshot, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
-import { auth, db } from "../BD/Configuracion"
+import { auth, db } from "../Configuracion"
 import { actualizar_Docente } from "../BD/CRUD"
 
 export default function Configuracion() {
@@ -36,7 +36,7 @@ export default function Configuracion() {
     const editar = (e) => {
        auth.onAuthStateChanged(user=>{
         if(user != null){
-            e.preventDefault()
+            e.preventDefault() 
             if (editarData.nombre != '' && editarData.apellido != '' && editarData.idEscuela != '' && editarData.telefono != '' && editarData.centro_educativo != '') {
                 actualizar_Docente('11111', user.email, editarData);
     
