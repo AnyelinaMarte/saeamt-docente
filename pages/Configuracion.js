@@ -3,7 +3,7 @@ import { updateEmail, updatePassword } from "firebase/auth"
 import { collection, doc, getDoc, getDocs, onSnapshot, query } from "firebase/firestore"
 import { useEffect, useState } from "react"
 import { auth, db } from "../Configuracion"
-import { actualizar_Docente } from "../BD/CRUD"
+import { actualizar_Docente } from "../CRUD"
 
 export default function Configuracion() {
     //editar datos personales
