@@ -50,15 +50,6 @@ export default function Nav(props){
           </li>
          
           
-          <li>
-          <Link href="/Configuracion">
-             <a>
-              <i className='bx bx-book-alt' ></i>
-              <span className="links_name">CONFIGURACIÓN</span>
-              </a>
-            </Link>
-            
-          </li>
 
           <li className="log_out">
             <a href="#" onClick={cerrar}>

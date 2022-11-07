@@ -66,6 +66,7 @@ export default function Home() {
               intentoCorrecta = intentoCorrecta +docu.intentoCorrecta
               numeroDeVecesIncorrectas = numeroDeVecesIncorrectas + docu.numeroDeVecesIncorrectas
           })
+          console.log(dataProgresoEstudiante)
           const division = 100 - ((numeroDeVecesIncorrectas / intentoCorrecta) * 100) 
           const numeroRedondeado = Math.round(division)
             if(docus.id == "Secuencias" || docus.id == "Adicion" || docus.id == "Division" || docus.id == "Multiplicacion" || docus.id == "NumerosOrdinales" || docus.id == "Numeros_pares_impares" || docus.id == "SignosComparacion" || docus.id == "Sustraccion" || docus.id == "ValorPosicion"){
@@ -113,9 +114,7 @@ export default function Home() {
   const seleccionNivel = (nombreNivel,progresoNiveles,  data, nivelActual)=>{
     setValorNivel({nombreNivel,ProgresoNivel:progresoNiveles, datos:data, nivelles:nivelActual})
   }
-  useEffect(()=>{
-    setProgreso(true)
-  },[])
+ 
   return (
     <main className="estadistica">
       
