@@ -14,6 +14,14 @@ export default function Home() {
   const [activeProgreso, setProgreso] = useState(false)
   const [porcentajes, setPorcentaje] =useState(0)
   const [email, setEmail] =useState("")
+  const [progress, setprogress] = useState(0)
+  const [Nivel1estado, setNivel1estado]=useState(0)
+  const [Nivel2estado, setNivel2estado]=useState(0)
+  const [Nivel3estado, setNivel3estado]=useState(0)
+  const [Nivel4estado, setNivel4estado]=useState(0)
+
+
+
   useEffect(()=>{
     const idData = []
     getDocs(query(collection(db, "11111","Usuarios", "Estudiantes")) )
@@ -46,7 +54,10 @@ export default function Home() {
           querySnapshot.forEach((doc) => {
           // doc.data() is never undefined for query doc snapshots
           datosProgreso.push({id:doc.id})
+          setprogress(datosProgreso.length)
+
       }); 
+      
       const dataProgresoEstudiante =[] 
       datosProgreso.forEach(async docus=>{
 
@@ -71,15 +82,22 @@ export default function Home() {
           const numeroRedondeado = Math.round(division)
             if(docus.id == "Secuencias" || docus.id == "Adicion" || docus.id == "Division" || docus.id == "Multiplicacion" || docus.id == "NumerosOrdinales" || docus.id == "Numeros_pares_impares" || docus.id == "SignosComparacion" || docus.id == "Sustraccion" || docus.id == "ValorPosicion"){
                 nivel1.push({...numeroRedondeado, id:docus.id, calificacion:numeroRedondeado})
+                setNivel1estado(nivel1.length)
             }
             if(docus.id == "Angulos" || docus.id == "Congruencia" || docus.id == "CuerposGeometricos" || docus.id == "Poligonos" || docus.id == "Simetria" ){
                 nivel2.push({...numeroRedondeado, id:docus.id, calificacion:numeroRedondeado})
+                setNivel2estado(nivel2.length)
+
             }
             if(docus.id == "Longitud" || docus.id == "Perimetro" ){
                 nivel3.push({...numeroRedondeado, id:docus.id, calificacion:numeroRedondeado})
+                setNivel3estado(nivel3.length)
+
             }
             if(docus.id == "datosProgresoEstadisticos"  ){
                 nivel4.push({...numeroRedondeado, id:docus.id, calificacion:numeroRedondeado})
+                setNivel4estado(nivel4.length)
+
             }
           })
       setNivelCalificaciones(nivel1) 
@@ -87,7 +105,8 @@ export default function Home() {
       setNivel3Calificaciones(nivel3) 
       setNivel4Calificaciones(nivel4) 
       const porcentaje =( ((nivel1.length + nivel2.length + nivel3.length + nivel4.length) * 100 ) / 17)
-      setPorcentaje(porcentaje)
+     
+
   }
   
   const handleChange =(e)=>{
@@ -113,8 +132,9 @@ export default function Home() {
   const [valorNivel, setValorNivel] = useState({})
   const seleccionNivel = (nombreNivel,progresoNiveles,  data, nivelActual)=>{
     setValorNivel({nombreNivel,ProgresoNivel:progresoNiveles, datos:data, nivelles:nivelActual})
+    
   }
- 
+
   return (
     <main className="estadistica">
       
@@ -171,11 +191,11 @@ export default function Home() {
                   :<>
                     <style>{`
                       .progress-bar::before{
-                        width:${Math.round( ((nivelCalificaciones.length + nivel2Calificaciones.length + nivel3Calificaciones.length + nivel4Calificaciones.length ) * 100 ) / 17)}%;
+                        width:${Math.round( ((progress ) * 100 ) / 17)}%;
                       }
                         
                     `}</style>
-                  <span>{Math.round( ((nivelCalificaciones.length + nivel2Calificaciones.length + nivel3Calificaciones.length + nivel4Calificaciones.length ) * 100 ) / 17)}% de 100%</span>
+                  <span>{Math.round( ((progress) * 100 ) / 17)}% de 100%</span>
                   <div className="progress-bar"></div>
                   </>
                 }
@@ -186,10 +206,10 @@ export default function Home() {
               <h4>Seleccionar Nivel</h4>
 
               <div>
-                <div><button onClick={()=>seleccionNivel("Numeracion", nivelCalificaciones, data, "Nivel_1") }>Numeracion <br></br></button></div>
-                <div><button onClick={()=>seleccionNivel("Geometria", nivel2Calificaciones, data, "Nivel_2") }>Geometria</button></div>
-                <div><button onClick={()=>seleccionNivel("Medicion", nivel3Calificaciones, data, "Nivel_3") }>Medicion</button></div>
-                <div><button onClick={()=>seleccionNivel("Estadistica Elemental", nivel4Calificaciones, data, "Nivel_4") }>Estadistica Elemental</button></div>
+                <div><button onClick={()=>seleccionNivel("Numeracion", nivelCalificaciones, data, "Nivel_1") }>Numeración  {Nivel1estado}/9<br></br></button></div>
+                <div><button onClick={()=>seleccionNivel("Geometria", nivel2Calificaciones, data, "Nivel_2") }>Geometría {nivel2Calificaciones.length}/5</button></div>
+                <div><button onClick={()=>seleccionNivel("Medicion", nivel3Calificaciones, data, "Nivel_3") }>Medición {nivel3Calificaciones.length}/2</button></div>
+                <div><button onClick={()=>seleccionNivel("Estadistica Elemental", nivel4Calificaciones, data, "Nivel_4") }>Estadística Elemental {nivel4Calificaciones.length}/1</button></div>
               
               </div>
 
