@@ -134,6 +134,11 @@ export default function Home() {
     setValorNivel({nombreNivel,ProgresoNivel:progresoNiveles, datos:data, nivelles:nivelActual})
     
   }
+ 
+  useEffect(()=>{
+    setProgreso(true)
+  },[])
+  
 
   return (
     <main className="estadistica">
