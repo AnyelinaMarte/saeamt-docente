@@ -22,6 +22,9 @@ export default function ProgresoNivel(props){
     const [ObjetivosProgreso3, setObjetivosProgreso3] = useState([])
     const [ObjetivosProgreso4, setObjetivosProgreso4] = useState([])
     const [ObjetivosProgreso5, setObjetivosProgreso5] = useState([])
+
+        
+    const [actualizaSubtema, setActualizaSubtema]=useState(0)
     ChartJS.register(
         CategoryScale,
         LinearScale,
@@ -78,7 +81,15 @@ export default function ProgresoNivel(props){
         const numeroRedondeado = Math.round(division)
         return numeroRedondeado
     }
+  
     const getData = async(subTema)=>{
+        setObjetivosProgreso1([])
+        setObjetivosProgreso2([])
+        setObjetivosProgreso3([])
+        setObjetivosProgreso4([])
+        setObjetivosProgreso5([
+
+        ])
         const datosProgreso = []
         const docRefProgeso = doc(db, "11111", "Usuarios", "Estudiantes", props.email, "Progeso-Estudiante", subTema)
         const docSnapProgreso = await getDoc(docRefProgeso);
@@ -121,14 +132,22 @@ export default function ProgresoNivel(props){
         setObjetivosProgreso3(Objetivos3)
         setObjetivosProgreso4(Objetivos4)
         setObjetivosProgreso5(Objetivos5)
-
+       
     }
     
     const AnalizarInformacion =()=>{
         var selectBox = document.getElementById("selectBox");
          var subTema = selectBox.options[selectBox.selectedIndex].value;
         getData(subTema)
+        const nivelesArray = props.nivel1.concat(props.nivel2).concat(props.nivel3).concat(props.nivel4)
+        const resultado1 = nivelesArray.filter(word=> {return word.id == subTema})
+        if(resultado1.length == 0){
+            setActualizaSubtema(0)
+        }
+        else{
+            setActualizaSubtema(resultado1[0].calificacion)
 
+        }
     }
     
      const dataBar = (ObjetivosProgres, nombre1, nombre2)=>{
@@ -157,11 +176,15 @@ export default function ProgresoNivel(props){
       };
       return data
      }
-  
+     
+
     return(
         <div className="progresoNivel">
             <h4>{valor.nombreNivel}</h4>
-            <hr></hr>
+            {valor.nombreNivel == "Numeracion" || valor.nombreNivel == "Geometria" || valor.nombreNivel == "Medicion" || valor.nombreNivel == "Estadistica Elemental"?
+                <hr></hr>
+                :<span></span>
+        }
             {valor.nombreNivel == "Numeracion"?
                 <select id="selectBox" onChange={AnalizarInformacion }>
                     <option  value="Sas">Seleccionar SubTema</option>
@@ -196,6 +219,15 @@ export default function ProgresoNivel(props){
                     <option  value="DatosEstadisticos">Datos Estadisticos</option>
                 </select>
             :<span></span>}
+            {console.log(valor.nombreNivel == "undefined")}
+            {valor.nombreNivel == "Numeracion" || valor.nombreNivel == "Geometria" || valor.nombreNivel == "Medicion" || valor.nombreNivel == "Estadistica Elemental"?
+                <div>
+                    <h3 className="puntajes">Ha obtenido {actualizaSubtema} puntos </h3>
+                    <hr></hr>
+                    <h3 className="calificaciones">Calificaciones por objetivos:</h3>
+                </div>
+                :<span></span>
+        }
             <div className="progresoObjetivos">
                 {
                     ObjetivosProgreso1.length != 0?
@@ -230,7 +262,7 @@ export default function ProgresoNivel(props){
                  {
                     ObjetivosProgreso3.length != 0?
                         <>
-                            <p>Objetivo 1: {ObjetivosProgreso3[0].NombreObjetivo} Con un Promedio de <span>{sacarPromedio(ObjetivosProgreso3)} %</span></p>
+                            <p>Objetivo 3: {ObjetivosProgreso3[0].NombreObjetivo} Con un Promedio de <span>{sacarPromedio(ObjetivosProgreso3)} %</span></p>
                             <Bar  data={dataBar(ObjetivosProgreso3, "Numero de veces Correcta", "Numero de veces Incorrecta")} />
                             <h2>Leyenda del objetivo 3</h2>
                             {GeneralLabelsPreguntar(ObjetivosProgreso3).map(e=>
@@ -245,7 +277,7 @@ export default function ProgresoNivel(props){
                  { 
                     ObjetivosProgreso4.length != 0?
                         <div className="Separador">
-                            <p>Objetivo 2: {ObjetivosProgreso4[0].NombreObjetivo} Con un Promedio de <span>{sacarPromedio(ObjetivosProgreso4)} %</span></p>
+                            <p>Objetivo 4: {ObjetivosProgreso4[0].NombreObjetivo} Con un Promedio de <span>{sacarPromedio(ObjetivosProgreso4)} %</span></p>
                             <Bar  data={dataBar(ObjetivosProgreso4, "Numero de veces Correcta", "Numero de veces Incorrecta")} />
                             <h2>Leyenda del objetivo 4</h2>
                             {GeneralLabelsPreguntar(ObjetivosProgreso4).map(e=>
@@ -260,7 +292,7 @@ export default function ProgresoNivel(props){
                 { 
                     ObjetivosProgreso5.length != 0?
                         <div className="Separador">
-                            <p>Objetivo 2: {ObjetivosProgreso5[0].NombreObjetivo} Con un Promedio de <span>{sacarPromedio(ObjetivosProgreso5)} %</span></p>
+                            <p>Objetivo 5: {ObjetivosProgreso5[0].NombreObjetivo} Con un Promedio de <span>{sacarPromedio(ObjetivosProgreso5)} %</span></p>
                             <Bar  data={dataBar(ObjetivosProgreso5, "Numero de veces Correcta", "Numero de veces Incorrecta")} />
                             <h2>Leyenda del objetivo 5</h2>
                             {GeneralLabelsPreguntar(ObjetivosProgreso5).map(e=>

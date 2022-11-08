@@ -179,3 +179,25 @@ nav .profile-details i{
   padding-top: 104px;
 }
 
+.puntajes{
+  margin-top: 20px;
+  margin-bottom: 20px;
+  font-size: 25px;
+  text-decoration: underline;
+  color: #272727;
+
+}
+.calificaciones{
+  margin-top: 40px;
+  margin-bottom: 3px;
+  padding-bottom: 0px;
+  text-align: left;
+}
+.index-table{
+  height: 200px;
+	border: 1px solid #ddd;
+	overflow-y: scroll;
+  border: none;
+  border-radius: 30px;
+  
+}

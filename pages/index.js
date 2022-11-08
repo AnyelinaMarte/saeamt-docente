@@ -32,6 +32,9 @@ export default function Home() {
       setId(idData)
     })
   },[])
+
+
+
   const getData=async (correo)=>{
     const Data = []
     getDocs(query(collection(db, "11111","Usuarios", "Estudiantes",correo, "Progeso-Estudiante" )) )
@@ -58,27 +61,30 @@ export default function Home() {
 
       }); 
       
-      const dataProgresoEstudiante =[] 
       datosProgreso.forEach(async docus=>{
 
           const docRef= doc(db, "11111", "Usuarios", "Estudiantes", correo, "Progeso-Estudiante",docus.id )
           const docSnap = await getDoc(docRef);
+          const dataProgresoEstudiante =[] 
           if (docSnap.exists()) {
-              for (var i = 0; i < 1; i++) {
-                dataProgresoEstudiante.push({...docSnap.data()[i]})
-                  
-              }
+            for (var i = 0; i < docSnap.data().tamanoPregunta; i++) {
+              if(docSnap.data()[i] != null){
+                  dataProgresoEstudiante.push({...docSnap.data()[i]})
+                }
+            }
           } else {
             dataProgresoEstudiante.push("No such document!")
           }
           let intentoCorrecta = 0
           let numeroDeVecesIncorrectas = 0
+      
           dataProgresoEstudiante.map(docu=>{
               intentoCorrecta = intentoCorrecta +docu.intentoCorrecta
               numeroDeVecesIncorrectas = numeroDeVecesIncorrectas + docu.numeroDeVecesIncorrectas
+          
           })
-          console.log(dataProgresoEstudiante)
-          const division = 100 - ((numeroDeVecesIncorrectas / intentoCorrecta) * 100) 
+          console.log(docus.id,intentoCorrecta, numeroDeVecesIncorrectas)
+          const division = (100 - ((numeroDeVecesIncorrectas / intentoCorrecta)) * 100) 
           const numeroRedondeado = Math.round(division)
             if(docus.id == "Secuencias" || docus.id == "Adicion" || docus.id == "Division" || docus.id == "Multiplicacion" || docus.id == "NumerosOrdinales" || docus.id == "Numeros_pares_impares" || docus.id == "SignosComparacion" || docus.id == "Sustraccion" || docus.id == "ValorPosicion"){
                 nivel1.push({...numeroRedondeado, id:docus.id, calificacion:numeroRedondeado})
@@ -94,7 +100,7 @@ export default function Home() {
                 setNivel3estado(nivel3.length)
 
             }
-            if(docus.id == "datosProgresoEstadisticos"  ){
+            if(docus.id == "DatosEstadisticos"  ){
                 nivel4.push({...numeroRedondeado, id:docus.id, calificacion:numeroRedondeado})
                 setNivel4estado(nivel4.length)
 
@@ -104,7 +110,6 @@ export default function Home() {
       setNivel2Calificaciones(nivel2) 
       setNivel3Calificaciones(nivel3) 
       setNivel4Calificaciones(nivel4) 
-      const porcentaje =( ((nivel1.length + nivel2.length + nivel3.length + nivel4.length) * 100 ) / 17)
      
 
   }
@@ -146,7 +151,8 @@ export default function Home() {
       <div className="BuscadorEstudiantes">
         <input onChange={handleChange}  name="buscador" type="text" placeholder="Buscar Estudiantes"/>
       </div>
-      <table>
+     <div className="index-table">
+     <table  >
           <tr>
               <th>
                   Nombre
@@ -186,6 +192,7 @@ export default function Home() {
             </tr>         
           )
       }</table>
+     </div>
       <div className="progreso-estadistica">
         {data.length != 0 ?
           <>
@@ -228,7 +235,7 @@ export default function Home() {
         }
       </div>
       <div>
-        <ProgresoNivel valor={valorNivel}  email={email}/>
+        <ProgresoNivel valor={valorNivel} nivel1={nivelCalificaciones} nivel2={nivel2Calificaciones} nivel3={nivel3Calificaciones} nivel4={nivel4Calificaciones} email={email}/>
       </div>
     </main>
   )
